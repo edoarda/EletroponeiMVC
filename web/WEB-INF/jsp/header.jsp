@@ -18,8 +18,8 @@
     <title>Eletroponei</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="resources/css.css" rel="stylesheet" type="text/css">
+    <link href="../resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../resources/css.css" rel="stylesheet" type="text/css">
     <!-- Custom styles for this template -->
   </head>
 

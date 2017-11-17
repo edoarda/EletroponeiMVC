@@ -78,7 +78,7 @@ public class CategoriaCRUD {
     }
     
     public void update(model.Categoria categoria){
-        String sql = "update administrador set nome = ? , descricao = ? where id = ?";
+        String sql = "update categoria set nome = ? , descricao = ? where id = ?";
         try {
             preparador = conexao.prepareStatement(sql);
             preparador.setString(1, categoria.getNome());
