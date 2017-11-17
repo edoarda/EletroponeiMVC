@@ -34,7 +34,7 @@ public class RedirectServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String pagina = request.getParameter("pagina");
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/"+ pagina + ".jsp");
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/"+ pagina + ".jsp");
         dispatcher.forward(request, response);
     }
     
@@ -45,7 +45,7 @@ public class RedirectServlet extends HttpServlet {
 
     @Override
     public String getServletInfo() {
-        return "Redireciona TODO MUNDO";
+        return "Redireciona TODO MUNDO (ou nao) dos jps. Ele não é usado nos outros servlets porque... sei lá.";
     }// </editor-fold>
 
 }

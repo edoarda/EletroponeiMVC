@@ -4,6 +4,6 @@
     Author     : Edoarda
 --%>
 
-<jsp:include page="/jsp/header.jsp" />
+<jsp:include page="header.jsp" />
 <h1 class="formy"> Isso é um index.</h1>
-<jsp:include page="/jsp/footer.jsp" />
+<jsp:include page="footer.jsp" />
