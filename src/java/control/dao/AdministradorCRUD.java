@@ -25,12 +25,12 @@ public class AdministradorCRUD {
         conexao = new Conector().getConnection();
     }
     
-    public void create(model.Administrador a){
+    public void create(model.Administrador administrador){
         String sql = "insert into administrador values (default, ?, ?)";
         try {
             preparador = conexao.prepareStatement(sql);
-            preparador.setString(1, a.getLogin());
-            preparador.setString(2, a.getSenha());
+            preparador.setString(1, administrador.getLogin());
+            preparador.setString(2, administrador.getSenha());
             preparador.execute();
             preparador.close();
         } catch (SQLException e) {
@@ -44,8 +44,8 @@ public class AdministradorCRUD {
             preparador = conexao.prepareStatement(sql);
             resultado = preparador.executeQuery();
             while(resultado.next()){
-                model.Administrador a = new model.Administrador(resultado.getInt("id"), resultado.getString("login"), resultado.getString("senha"));
-                lista.add(a);
+                model.Administrador administrador = new model.Administrador(resultado.getInt("id"), resultado.getString("login"), resultado.getString("senha"));
+                lista.add(administrador);
             }
             resultado.close();
             preparador.close();
@@ -78,24 +78,24 @@ public class AdministradorCRUD {
         }
     }
     
-    public void update(model.Administrador a){
+    public void update(model.Administrador administrador){
         String sql = "update administrador set login = ? , senha = ? where id = ?";
         try {
             preparador = conexao.prepareStatement(sql);
-            preparador.setString(1, a.getLogin());
-            preparador.setString(2, a.getSenha());
-            preparador.setInt(3, a.getId());
+            preparador.setString(1, administrador.getLogin());
+            preparador.setString(2, administrador.getSenha());
+            preparador.setInt(3, administrador.getId());
             preparador.execute();
             preparador.close();
         } catch(SQLException e){
         }
     }
     
-    public void delete(model.Administrador a){
+    public void delete(model.Administrador administrador){
         String sql = "delete from administrador where id = ?";
         try {
             preparador = conexao.prepareStatement(sql);
-            preparador.setInt(1, a.getId());
+            preparador.setInt(1, administrador.getId());
             preparador.execute();
             preparador.close();
         } catch(SQLException e) {

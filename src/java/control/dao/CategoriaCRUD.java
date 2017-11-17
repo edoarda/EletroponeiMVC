@@ -25,12 +25,12 @@ public class CategoriaCRUD {
         conexao = new Conector().getConnection();
     }
     
-    public void create(model.Categoria a){
+    public void create(model.Categoria categoria){
         String sql = "insert into categoria values (default, ?, ?)";
         try {
             preparador = conexao.prepareStatement(sql);
-            preparador.setString(1, a.getNome());
-            preparador.setString(2, a.getDescricao());
+            preparador.setString(1, categoria.getNome());
+            preparador.setString(2, categoria.getDescricao());
             preparador.execute();
             preparador.close();
         } catch (SQLException e) {
@@ -44,8 +44,8 @@ public class CategoriaCRUD {
             preparador = conexao.prepareStatement(sql);
             resultado = preparador.executeQuery();
             while(resultado.next()){
-                model.Categoria a = new model.Categoria(resultado.getInt("id"), resultado.getString("nome"), resultado.getString("descricao"));
-                lista.add(a);
+                model.Categoria categoria = new model.Categoria(resultado.getInt("id"), resultado.getString("nome"), resultado.getString("descricao"));
+                lista.add(categoria);
             }
             resultado.close();
             preparador.close();
