@@ -56,11 +56,33 @@ public class CategoriaCRUD {
     }
     
     public model.Categoria readOne(String nome) {
-       String sql = "select * from categoria where nome = ?";
+       String sql = "select * from categoria where nome like %?%";
        model.Categoria categoria = new model.Categoria();
         try {
             preparador = conexao.prepareStatement(sql);
             preparador.setString(1, nome);
+            resultado = preparador.executeQuery();
+            if(resultado.next()){
+                categoria.setId(resultado.getInt("id"));
+                categoria.setNome(resultado.getString("nome"));
+                categoria.setDescricao(resultado.getString("descricao"));
+            } else {
+                categoria = null;
+            }
+            resultado.close();
+            preparador.close();
+            return categoria;
+        } catch(SQLException e){
+            return null;
+        }
+    }
+    
+    public model.Categoria readOne(int id) {
+       String sql = "select * from categoria where id = ?";
+       model.Categoria categoria = new model.Categoria();
+        try {
+            preparador = conexao.prepareStatement(sql);
+            preparador.setInt(1, id);
             resultado = preparador.executeQuery();
             if(resultado.next()){
                 categoria.setId(resultado.getInt("id"));
