@@ -7,7 +7,6 @@ package control.servlet;
 
 import control.dao.AdministradorCRUD;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -63,22 +62,22 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
         AdministradorCRUD bd;
         Administrador adm = null;
         bd = new AdministradorCRUD();
-        String login = request.getParameter("login");
-        String senha = request.getParameter("senha");
+        String login = request.getParameter("InputLogin");
+        String senha = request.getParameter("InputSenha");
+        
         adm = bd.readOne(login, senha);
         RequestDispatcher resposta;
         if(adm == null) {
-            resposta = request.getRequestDispatcher("/index.jsp");
+            resposta = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
         } else {
             HttpSession session = request.getSession();
             session.setAttribute("login", login);
             session.setAttribute("senha", senha);
             session.setAttribute("logado", "true");
-            resposta = request.getRequestDispatcher("/adm/index.jsp"); 
+            resposta = request.getRequestDispatcher("/WEB-INF/jsp/indexAdmin.jsp"); 
         }
         resposta.forward(request, response);
     }

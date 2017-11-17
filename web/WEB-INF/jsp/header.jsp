@@ -18,8 +18,8 @@
     <title>Eletroponei</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="../resources/css.css" rel="stylesheet" type="text/css">
+    <link href="./resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="./resources/css.css" rel="stylesheet" type="text/css">
     <!-- Custom styles for this template -->
   </head>
 
@@ -34,7 +34,7 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="admin.jsp">Área Administrativa<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="Redirect?pagina=admin">Área Administrativa<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>

@@ -35,5 +35,9 @@
     <bean name="indexController"
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"
           p:viewName="index" />
+    
+    <!--<bean name="adminController"
+          class="org.springframework.web.servlet.mvc.ControllerClassNameHandlerMapping"
+          p:viewName="admin" />-->
 
 </beans>
