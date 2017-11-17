@@ -6,5 +6,4 @@
 
 <jsp:include page="header.jsp" />
         <h1 class="formy">Vc entrou seu bosta</h1>
-    </body>
 <jsp:include page="footer.jsp" />
