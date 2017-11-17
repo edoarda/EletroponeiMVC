@@ -14,6 +14,10 @@ public class Compra {
     private int idCliente;
     private int idProduto;
 
+    public Compra() {
+        
+    }
+    
     public Compra(int id, int idCliente, int idProduto) {
         this.id = id;
         this.idCliente = idCliente;

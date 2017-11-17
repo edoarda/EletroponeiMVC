@@ -16,6 +16,10 @@ public class Produto {
     private String descricao;
     private Double valor;
 
+    public Produto() {
+        
+    }
+    
     public Produto(int id, int idCategoria, String nome, String descricao, Double valor) {
         this.id = id;
         this.idCategoria = idCategoria;

@@ -13,6 +13,10 @@ public class Administrador {
     private int id;
     private String login;
     private String senha;
+    
+    public Administrador() {
+        
+    }
 
     public Administrador(int id, String login, String senha) {
         this.id = id;

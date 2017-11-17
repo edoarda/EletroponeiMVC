@@ -25,6 +25,10 @@ public class Cliente {
     private String cartao;
     private String bandeira;
 
+    public Cliente() {
+        
+    }
+    
     public Cliente(int id, String nome, String endereco, String bairro, String cidade, String cep, String uf, String cpf, String referencia, String identidade, String telefone, String celular, String cartao, String bandeira) {
         this.id = id;
         this.nome = nome;

@@ -14,6 +14,10 @@ public class Categoria {
     private String nome;
     private String descricao;
 
+    public Categoria () {
+        
+    }
+    
     public Categoria(int id, String nome, String descricao) {
         this.id = id;
         this.nome = nome;
