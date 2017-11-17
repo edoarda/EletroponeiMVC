@@ -12,6 +12,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Produto;
+import control.dao.ProdutoCRUD;
 
 /**
  *
@@ -31,9 +33,9 @@ public class ProdutoServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        /*response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+            // TODO output your page here. You may use following sample code.
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -43,7 +45,7 @@ public class ProdutoServlet extends HttpServlet {
             out.println("<h1>Servlet ProdutoServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-        }
+        }*/
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -72,7 +74,38 @@ public class ProdutoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String sa = request.getParameter("submitAction");
+        ProdutoCRUD crud = new ProdutoCRUD();
+        if(sa == null) {
+            Produto produto = new Produto();
+            //administrador.setDescricao(request.getParameter("descricao"));
+            //adicionei o nome aqui
+            produto.setIdCategoria(Integer.parseInt(request.getParameter("idcategoria")));
+            produto.setNome(request.getParameter("nome"));
+            produto.setDescricao(request.getParameter("descricao"));
+            produto.setValor(Double.parseDouble(request.getParameter("nome")));
+            crud.create(produto);
+        } else {
+        
+            if(sa.equalsIgnoreCase("Alterar")){
+                int id = Integer.valueOf(request.getParameter("produto"));
+                Produto produto = crud.readOne(id);
+                //c.setDescricao("mudando");// nao entendi direito o q isso ta fazendo, mudei ele depois, se nao tiver diferença tirar essa linha
+                //adicionei o nome aqui
+                produto.setIdCategoria(Integer.parseInt(request.getParameter("idcategoria")));
+                produto.setNome(request.getParameter("nome"));
+                produto.setDescricao(request.getParameter("descricao"));
+                produto.setValor(Double.parseDouble(request.getParameter("nome")));
+                crud.update(produto);
+            }
+
+            if(sa.equalsIgnoreCase("Excluir")){
+                int id = Integer.valueOf(request.getParameter("produto"));
+                Produto produto = new Produto();
+                produto.setId(id);
+                crud.delete(produto);
+            }
+        }
     }
 
     /**

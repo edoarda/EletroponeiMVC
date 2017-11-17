@@ -12,6 +12,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Compra;
+import control.dao.CompraCRUD;
 
 /**
  *
@@ -31,9 +33,9 @@ public class CompraServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        /*response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+            // TODO output your page here. You may use following sample code. 
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -43,7 +45,7 @@ public class CompraServlet extends HttpServlet {
             out.println("<h1>Servlet CompraServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-        }
+        }*/
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -72,7 +74,34 @@ public class CompraServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String sa = request.getParameter("submitAction");
+        CompraCRUD crud = new CompraCRUD();
+        if(sa == null) {
+            Compra compra = new Compra();
+            //administrador.setDescricao(request.getParameter("descricao"));
+            //adicionei o nome aqui
+            compra.setIdCliente(Integer.parseInt(request.getParameter("idcliente")));
+            compra.setIdProduto(Integer.parseInt(request.getParameter("idproduto")));
+            crud.create(compra);
+        } else {
+        
+            if(sa.equalsIgnoreCase("Alterar")){
+                int id = Integer.valueOf(request.getParameter("compra"));
+                Compra compra = crud.readOne(id);
+                //c.setDescricao("mudando");// nao entendi direito o q isso ta fazendo, mudei ele depois, se nao tiver diferença tirar essa linha
+                //adicionei o nome aqui
+                compra.setIdCliente(Integer.parseInt(request.getParameter("idcliente")));
+                compra.setIdProduto(Integer.parseInt(request.getParameter("idproduto")));
+                crud.update(compra);
+            }
+
+            if(sa.equalsIgnoreCase("Excluir")){
+                int id = Integer.valueOf(request.getParameter("compra"));
+                Compra compra = new Compra();
+                compra.setId(id);
+                crud.delete(compra);
+            }
+        }
     }
 
     /**

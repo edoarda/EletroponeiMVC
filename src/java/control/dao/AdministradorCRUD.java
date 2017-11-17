@@ -78,6 +78,28 @@ public class AdministradorCRUD {
         }
     }
     
+    public model.Administrador readOne(int id) {
+       String sql = "select * from administrador where id = ?";
+       model.Administrador a = new model.Administrador();
+        try {
+            preparador = conexao.prepareStatement(sql);
+            preparador.setInt(1, id);
+            resultado = preparador.executeQuery();
+            if(resultado.next()){
+                a.setId(resultado.getInt("id"));
+                a.setLogin(resultado.getString("login"));
+                a.setSenha(resultado.getString("senha"));
+            } else {
+                a = null;
+            }
+            resultado.close();
+            preparador.close();
+            return a;
+        } catch(SQLException e){
+            return null;
+        }
+    }
+    
     public void update(model.Administrador administrador){
         String sql = "update administrador set login = ? , senha = ? where id = ?";
         try {

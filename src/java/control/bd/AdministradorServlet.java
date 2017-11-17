@@ -5,6 +5,7 @@
  */
 package control.bd;
 
+import control.dao.AdministradorCRUD;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Administrador;
 
 /**
  *
@@ -31,9 +33,9 @@ public class AdministradorServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        /*response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+            // TODO output your page here. You may use following sample code. 
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -43,7 +45,7 @@ public class AdministradorServlet extends HttpServlet {
             out.println("<h1>Servlet AdministradorServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-        }
+        }*/
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -72,7 +74,35 @@ public class AdministradorServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        String sa = request.getParameter("submitAction");
+        AdministradorCRUD crud = new AdministradorCRUD();
+        if(sa == null) {
+            Administrador administrador = new Administrador();
+            //administrador.setDescricao(request.getParameter("descricao"));
+            //adicionei o nome aqui
+            administrador.setLogin(request.getParameter("login"));
+            administrador.setSenha(request.getParameter("senha"));
+            crud.create(administrador);
+        } else {
+        
+            if(sa.equalsIgnoreCase("Alterar")){
+                int aid = Integer.valueOf(request.getParameter("administrador"));
+                Administrador a = crud.readOne(aid);
+                //c.setDescricao("mudando");// nao entendi direito o q isso ta fazendo, mudei ele depois, se nao tiver diferença tirar essa linha
+                //adicionei o nome aqui
+                a.setLogin(request.getParameter("login"));
+                a.setSenha(request.getParameter("senha"));
+                crud.update(a);
+            }
+
+            if(sa.equalsIgnoreCase("Excluir")){
+                int aid = Integer.valueOf(request.getParameter("administrador"));
+                Administrador a = new Administrador();
+                a.setId(aid);
+                crud.delete(a);
+            }
+        }
     }
 
     /**
