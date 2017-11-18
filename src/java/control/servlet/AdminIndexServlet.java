@@ -71,7 +71,7 @@ public class AdminIndexServlet extends HttpServlet {
         request.setAttribute("produto", pdt);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/indexAdmin.jsp");
-        dispatcher.forward();
+        dispatcher.forward(request, response);
             
     }
 
