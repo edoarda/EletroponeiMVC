@@ -64,26 +64,31 @@ public class CategoriaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String sa = request.getParameter("submitAction");
-        CategoriaCRUD dao = new CategoriaCRUD();
+        CategoriaCRUD crud = new CategoriaCRUD();
         if(sa == null) {
-            Categoria cat = new Categoria();
-            cat.setDescricao(request.getParameter("description"));
-            dao.create(cat);
+            Categoria categoria = new Categoria();
+            categoria.setDescricao(request.getParameter("descricao"));
+            //adicionei o nome aqui
+            categoria.setNome(request.getParameter("nome"));
+            crud.create(categoria);
         } else {
         
-        if(sa.equalsIgnoreCase("Alterar")){
-            int catid = Integer.valueOf(request.getParameter("categorias"));
-            Categoria c = dao.readOne(catid);
-            c.setDescricao("Mudando");
-            dao.update(c);
-        }
-        
-        if(sa.equalsIgnoreCase("Excluir")){
-            int catid = Integer.valueOf(request.getParameter("categorias"));
-            Categoria c = new Categoria();
-            c.setId(catid);
-            dao.delete(c);
-        }
+            if(sa.equalsIgnoreCase("Alterar")){
+                int catid = Integer.valueOf(request.getParameter("categorias"));
+                Categoria c = crud.readOne(catid);
+                c.setDescricao("mudando");// nao entendi direito o q isso ta fazendo, mudei ele depois, se nao tiver diferença tirar essa linha
+                //adicionei o nome aqui
+                c.setNome(request.getParameter("nome"));
+                c.setDescricao(request.getParameter("descricao"));
+                crud.update(c);
+            }
+
+            if(sa.equalsIgnoreCase("Excluir")){
+                int catid = Integer.valueOf(request.getParameter("categorias"));
+                Categoria c = new Categoria();
+                c.setId(catid);
+                crud.delete(c);
+            }
         }
         //RequestDispatcher rd = request.getRequestDispatcher("/TrabalhoFinal/login-menu/menu.html");
         //rd.forward(request, response);

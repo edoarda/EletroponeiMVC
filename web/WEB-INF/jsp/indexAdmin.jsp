@@ -6,4 +6,11 @@
 
 <jsp:include page="header.jsp" />
         <h1 class="formy">Vc entrou seu bosta</h1>
+        <c:forEach var="Adm" items="${Administrador}">
+            <tr>
+                <td>${Administrador.login }</td>
+                <td>*****</td>
+            </tr>
+      <!-- some code here -->
+</c:forEach>
 <jsp:include page="footer.jsp" />

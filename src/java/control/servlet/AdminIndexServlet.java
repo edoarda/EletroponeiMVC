@@ -5,23 +5,23 @@
  */
 package control.servlet;
 
-import control.dao.AdministradorCRUD;
+import model.*;
+import control.dao.*;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Administrador;
 
 /**
  *
  * @author edoarda
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "AdminIndexServlet", urlPatterns = {"/AdminIndex"})
+public class AdminIndexServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,6 +34,34 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            List<Administrador> adm;
+            AdministradorCRUD readAdm = new AdministradorCRUD();
+            adm = readAdm.readAll();
+            request.setAttribute("Administrador", adm);
+            /*
+            List<Categoria> ctg;
+            CategoriaCRUD readCtg = new CategoriaCRUD();
+            ctg = readCtg.readAll();
+            request.setAttribute("Categoria", ctg);
+            
+            List<Cliente> clt;
+            ClienteCRUD readClt = new ClienteCRUD();
+            clt = readClt.readAll();
+            request.setAttribute("Cliente", clt);
+            
+            List<Compra> cmp;
+            CompraCRUD readCmp = new CompraCRUD();
+            cmp = readCmp.readAll();
+            request.setAttribute("Compra", cmp);
+            
+            List<Produto> pdt;
+            ProdutoCRUD readPdt = new ProdutoCRUD();
+            pdt = readPdt.readAll();
+            request.setAttribute("Produto", pdt);*/
+            
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/indexAdmin.jsp");
+            dispatcher.forward(request, response);
+            
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -62,25 +90,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        AdministradorCRUD bd;
-        Administrador adm = null;
-        bd = new AdministradorCRUD();
-        String login = request.getParameter("InputLogin");
-        String senha = request.getParameter("InputSenha");
-        
-        adm = bd.readOne(login, senha);
-        RequestDispatcher resposta;
-        if(adm == null) {
-            resposta = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
-        } else {
-            HttpSession session = request.getSession();
-            session.setAttribute("login", login);
-            session.setAttribute("senha", senha);
-            session.setAttribute("logado", "true");
-            //resposta = request.getRequestDispatcher("/WEB-INF/jsp/indexAdmin.jsp"); 
-            resposta = request.getRequestDispatcher("/AdminIndex"); 
-        }
-        resposta.forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -90,7 +100,7 @@ public class LoginServlet extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Ele explode as vezes e loga coisas de vez em quando.";
+        return "Short description";
     }// </editor-fold>
 
 }

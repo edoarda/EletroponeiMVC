@@ -12,6 +12,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Cliente;
+import control.dao.ClienteCRUD;
 
 /**
  *
@@ -31,9 +33,9 @@ public class ClienteServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        /*response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+            // TODO output your page here. You may use following sample code. 
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -43,7 +45,7 @@ public class ClienteServlet extends HttpServlet {
             out.println("<h1>Servlet ClienteServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-        }
+        }*/
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -72,7 +74,57 @@ public class ClienteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        String sa = request.getParameter("submitAction");
+        ClienteCRUD crud = new ClienteCRUD();
+        if(sa == null) {
+            Cliente cliente = new Cliente();
+            //administrador.setDescricao(request.getParameter("descricao"));
+            //adicionei o nome aqui
+            cliente.setBairro(request.getParameter("bairro"));
+            cliente.setBandeira(request.getParameter("bandeira"));
+            cliente.setCartao(request.getParameter("cartao"));
+            cliente.setCelular(request.getParameter("celular"));
+            cliente.setCep(request.getParameter("cep"));
+            cliente.setCidade(request.getParameter("cidade"));
+            cliente.setCpf(request.getParameter("cpf"));
+            cliente.setEndereco(request.getParameter("endereco"));
+            cliente.setIdentidade(request.getParameter("identidade"));
+            cliente.setNome(request.getParameter("nome"));
+            cliente.setReferencia(request.getParameter("referencia"));
+            cliente.setTelefone(request.getParameter("telefone"));
+            cliente.setUf(request.getParameter("uf"));
+            crud.create(cliente);
+        } else {
+        
+            if(sa.equalsIgnoreCase("Alterar")){
+                int id = Integer.valueOf(request.getParameter("cliente"));
+                Cliente cliente = crud.readOne(id);
+                //c.setDescricao("mudando");// nao entendi direito o q isso ta fazendo, mudei ele depois, se nao tiver diferença tirar essa linha
+                //adicionei o nome aqui
+                cliente.setBairro(request.getParameter("bairro"));
+                cliente.setBandeira(request.getParameter("bandeira"));
+                cliente.setCartao(request.getParameter("cartao"));
+                cliente.setCelular(request.getParameter("celular"));
+                cliente.setCep(request.getParameter("cep"));
+                cliente.setCidade(request.getParameter("cidade"));
+                cliente.setCpf(request.getParameter("cpf"));
+                cliente.setEndereco(request.getParameter("endereco"));
+                cliente.setIdentidade(request.getParameter("identidade"));
+                cliente.setNome(request.getParameter("nome"));
+                cliente.setReferencia(request.getParameter("referencia"));
+                cliente.setTelefone(request.getParameter("telefone"));
+                cliente.setUf(request.getParameter("uf"));
+                crud.update(cliente);
+            }
+
+            if(sa.equalsIgnoreCase("Excluir")){
+                int id = Integer.valueOf(request.getParameter("cliente"));
+                Cliente cliente = new Cliente();
+                cliente.setId(id);
+                crud.delete(cliente);
+            }
+        }
     }
 
     /**
