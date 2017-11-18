@@ -34,6 +34,7 @@ public class AdministradorCRUD {
             preparador.execute();
             preparador.close();
         } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
     
@@ -50,7 +51,8 @@ public class AdministradorCRUD {
             resultado.close();
             preparador.close();
             return lista;
-        } catch(SQLException e){
+        } catch(SQLException e) {
+            e.printStackTrace();
             return null;
         }
     }
@@ -73,7 +75,8 @@ public class AdministradorCRUD {
             resultado.close();
             preparador.close();
             return a;
-        } catch(SQLException e){
+        } catch(SQLException e) {
+            e.printStackTrace();
             return null;
         }
     }
@@ -95,7 +98,8 @@ public class AdministradorCRUD {
             resultado.close();
             preparador.close();
             return a;
-        } catch(SQLException e){
+        } catch(SQLException e) {
+            e.printStackTrace();
             return null;
         }
     }
@@ -109,7 +113,8 @@ public class AdministradorCRUD {
             preparador.setInt(3, administrador.getId());
             preparador.execute();
             preparador.close();
-        } catch(SQLException e){
+        } catch(SQLException e) {
+            e.printStackTrace();
         }
     }
     
@@ -121,6 +126,7 @@ public class AdministradorCRUD {
             preparador.execute();
             preparador.close();
         } catch(SQLException e) {
+            e.printStackTrace();
         }
     }
 }

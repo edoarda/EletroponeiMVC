@@ -46,6 +46,7 @@ public class ClienteCRUD {
             
             preparador.close();
         } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
     
@@ -77,6 +78,7 @@ public class ClienteCRUD {
             preparador.close();
             return lista;
         } catch(SQLException e){
+            e.printStackTrace();
             return null;
         }
     }
@@ -110,6 +112,7 @@ public class ClienteCRUD {
             preparador.close();
             return cliente;
         } catch(SQLException e){
+            e.printStackTrace();
             return null;
         }
     }
