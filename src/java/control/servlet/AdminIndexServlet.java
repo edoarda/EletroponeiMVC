@@ -35,34 +35,43 @@ public class AdminIndexServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            List<Administrador> adm;
-            AdministradorCRUD readAdm = new AdministradorCRUD();
-            adm = readAdm.readAll();
-            request.setAttribute("Administrador", adm);
-            out.println("VOCE É " + adm.get(0).getLogin());
-            /*
-            List<Categoria> ctg;
-            CategoriaCRUD readCtg = new CategoriaCRUD();
-            ctg = readCtg.readAll();
-            request.setAttribute("Categoria", ctg);
-            
-            List<Cliente> clt;
-            ClienteCRUD readClt = new ClienteCRUD();
-            clt = readClt.readAll();
-            request.setAttribute("Cliente", clt);
-            
-            List<Compra> cmp;
-            CompraCRUD readCmp = new CompraCRUD();
-            cmp = readCmp.readAll();
-            request.setAttribute("Compra", cmp);
-            
-            List<Produto> pdt;
-            ProdutoCRUD readPdt = new ProdutoCRUD();
-            pdt = readPdt.readAll();
-            request.setAttribute("Produto", pdt);*/
-            
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/indexAdmin.jsp");
-            dispatcher.forward(request, response);
+        List<String> str;
+        List<Administrador> adm;
+        AdministradorCRUD readAdm = new AdministradorCRUD();
+        adm = readAdm.readAll();
+        request.setAttribute("Administrador", adm);
+        out.println("VOCE É " + adm.get(0).getLogin());
+        
+        List<Categoria> ctg;
+        CategoriaCRUD readCtg = new CategoriaCRUD();
+        str = readCtg.getMetadata();
+        ctg = readCtg.readAll();
+        request.setAttribute("catCampos", str);
+        request.setAttribute("categoria", ctg);
+
+        List<Cliente> clt;
+        ClienteCRUD readClt = new ClienteCRUD();
+        str = readClt.getMetadata();
+        clt = readClt.readAll();
+        request.setAttribute("cltCampos", str);
+        request.setAttribute("cliente", clt);
+
+        List<Compra> cmp;
+        CompraCRUD readCmp = new CompraCRUD();
+        str = readCmp.getMetadata();
+        cmp = readCmp.readAll();
+        request.setAttribute("cmpCampos", str);
+        request.setAttribute("compra", cmp);
+
+        List<Produto> pdt;
+        ProdutoCRUD readPdt = new ProdutoCRUD();
+        str = readPdt.getMetadata();
+        pdt = readPdt.readAll();
+        request.setAttribute("pdtCampos", str);
+        request.setAttribute("produto", pdt);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/indexAdmin.jsp");
+        dispatcher.forward();
             
     }
 
