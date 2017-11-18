@@ -25,7 +25,7 @@ public class AdministradorCRUD {
         conexao = new Conector().getConnection();
     }
     
-    public void create(model.Administrador administrador){
+    public void create(model.Administrador administrador) {
         String sql = "insert into administrador values (default, ?, ?)";
         try {
             preparador = conexao.prepareStatement(sql);
@@ -45,7 +45,8 @@ public class AdministradorCRUD {
             preparador = conexao.prepareStatement(sql);
             resultado = preparador.executeQuery();
             while(resultado.next()){
-                model.Administrador administrador = new model.Administrador(resultado.getInt("id"), resultado.getString("login"), resultado.getString("senha"));
+                //model.Administrador administrador = new model.Administrador(resultado.getInt("id"), resultado.getString("login"), resultado.getString("senha"));
+                model.Administrador administrador = new model.Administrador(1, resultado.getString("login"), resultado.getString("senha"));
                 lista.add(administrador);
             }
             resultado.close();
@@ -104,7 +105,7 @@ public class AdministradorCRUD {
         }
     }
     
-    public void update(model.Administrador administrador){
+    public void update(model.Administrador administrador) {
         String sql = "update administrador set login = ? , senha = ? where id = ?";
         try {
             preparador = conexao.prepareStatement(sql);
@@ -118,7 +119,7 @@ public class AdministradorCRUD {
         }
     }
     
-    public void delete(model.Administrador administrador){
+    public void delete(model.Administrador administrador) {
         String sql = "delete from administrador where id = ?";
         try {
             preparador = conexao.prepareStatement(sql);
@@ -128,5 +129,13 @@ public class AdministradorCRUD {
         } catch(SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    public List<String> getMetadata() {
+        List<String> metadata = null;
+        metadata.add("Id");
+        metadata.add("Login");
+        metadata.add("Senha");
+        return metadata;
     }
 }

@@ -8,6 +8,7 @@ package control.servlet;
 import model.*;
 import control.dao.*;
 import java.io.IOException;
+import static java.lang.System.out;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -38,6 +39,7 @@ public class AdminIndexServlet extends HttpServlet {
             AdministradorCRUD readAdm = new AdministradorCRUD();
             adm = readAdm.readAll();
             request.setAttribute("Administrador", adm);
+            out.println("VOCE É " + adm.get(0).getLogin());
             /*
             List<Categoria> ctg;
             CategoriaCRUD readCtg = new CategoriaCRUD();

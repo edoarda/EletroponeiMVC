@@ -25,7 +25,7 @@ public class CompraCRUD {
         conexao = new Conector().getConnection();
     }
     
-    public void create(model.Compra compra){
+    public void create(model.Compra compra) {
         String sql = "insert into compra values (default, ?, ?)";
         try {
             preparador = conexao.prepareStatement(sql);
@@ -50,7 +50,7 @@ public class CompraCRUD {
             resultado.close();
             preparador.close();
             return lista;
-        } catch(SQLException e){
+        } catch(SQLException e) {
             return null;
         }
     }
@@ -72,12 +72,12 @@ public class CompraCRUD {
             resultado.close();
             preparador.close();
             return compra;
-        } catch(SQLException e){
+        } catch(SQLException e) {
             return null;
         }
     }
     
-    public void update(model.Compra compra){
+    public void update(model.Compra compra) {
         String sql = "update compra set idcliente = ? , idproduto = ? where id = ?";
         try {
             preparador = conexao.prepareStatement(sql);
@@ -86,11 +86,11 @@ public class CompraCRUD {
             preparador.setInt(3, compra.getId());
             preparador.execute();
             preparador.close();
-        } catch(SQLException e){
+        } catch(SQLException e) {
         }
     }
     
-    public void delete(model.Compra compra){
+    public void delete(model.Compra compra) {
         String sql = "delete from compra where id = ?";
         try {
             preparador = conexao.prepareStatement(sql);
@@ -99,5 +99,14 @@ public class CompraCRUD {
             preparador.close();
         } catch(SQLException e) {
         }
+    }
+    
+    public List<String> getMetadata() {
+        List<String> metadata = null;
+        metadata.add("Id");
+        metadata.add("IdCliente");
+        metadata.add("IdProduto");
+        
+        return metadata;
     }
 }
