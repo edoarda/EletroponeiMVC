@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Categoria;
 import control.dao.CategoriaCRUD;
+import java.util.List;
 
 /**
  *
@@ -72,7 +73,14 @@ public class CategoriaServlet extends HttpServlet {
             categoria.setNome(request.getParameter("nome"));
             crud.create(categoria);
         } else {
-        
+            if(sa.equalsIgnoreCase("Ver")){
+                List<String> str;
+                List<Categoria> cat;
+                str = crud.getMetadata();
+                cat = crud.readAll();
+                request.setAttribute("catCampos", str);
+                request.setAttribute("categoria", cat);
+            }
             if(sa.equalsIgnoreCase("Alterar")){
                 int catid = Integer.valueOf(request.getParameter("categorias"));
                 Categoria c = crud.readOne(catid);

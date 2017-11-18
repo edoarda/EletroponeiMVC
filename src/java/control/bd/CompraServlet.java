@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Compra;
 import control.dao.CompraCRUD;
+import java.util.List;
 
 /**
  *
@@ -84,7 +85,14 @@ public class CompraServlet extends HttpServlet {
             compra.setIdProduto(Integer.parseInt(request.getParameter("idproduto")));
             crud.create(compra);
         } else {
-        
+            if(sa.equalsIgnoreCase("Ver")){
+                List<String> str;
+                List<Compra> cmp;
+                str = crud.getMetadata();
+                cmp = crud.readAll();
+                request.setAttribute("cmpCampos", str);
+                request.setAttribute("compra", cmp);
+            }
             if(sa.equalsIgnoreCase("Alterar")){
                 int id = Integer.valueOf(request.getParameter("compra"));
                 Compra compra = crud.readOne(id);

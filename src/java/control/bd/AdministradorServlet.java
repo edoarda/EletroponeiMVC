@@ -8,6 +8,7 @@ package control.bd;
 import control.dao.AdministradorCRUD;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -85,7 +86,14 @@ public class AdministradorServlet extends HttpServlet {
             administrador.setSenha(request.getParameter("senha"));
             crud.create(administrador);
         } else {
-        
+            if(sa.equalsIgnoreCase("Ver")){
+                List<String> str;
+                List<Administrador> adm;
+                str = crud.getMetadata();
+                adm = crud.readAll();
+                request.setAttribute("admCampos", str);
+                request.setAttribute("administrador", adm);
+            }
             if(sa.equalsIgnoreCase("Alterar")){
                 int aid = Integer.valueOf(request.getParameter("administrador"));
                 Administrador a = crud.readOne(aid);

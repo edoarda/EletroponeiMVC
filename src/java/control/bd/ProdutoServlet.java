@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Produto;
 import control.dao.ProdutoCRUD;
+import java.util.List;
 
 /**
  *
@@ -86,7 +87,14 @@ public class ProdutoServlet extends HttpServlet {
             produto.setValor(Double.parseDouble(request.getParameter("nome")));
             crud.create(produto);
         } else {
-        
+            if(sa.equalsIgnoreCase("Ver")){
+                List<String> str;
+                List<Produto> pdt;
+                str = crud.getMetadata();
+                pdt = crud.readAll();
+                request.setAttribute("pdtCampos", str);
+                request.setAttribute("produto", pdt);
+            }
             if(sa.equalsIgnoreCase("Alterar")){
                 int id = Integer.valueOf(request.getParameter("produto"));
                 Produto produto = crud.readOne(id);

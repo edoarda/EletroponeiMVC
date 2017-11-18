@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Cliente;
 import control.dao.ClienteCRUD;
+import java.util.List;
 
 /**
  *
@@ -96,7 +97,14 @@ public class ClienteServlet extends HttpServlet {
             cliente.setUf(request.getParameter("uf"));
             crud.create(cliente);
         } else {
-        
+            if(sa.equalsIgnoreCase("Ver")){
+                List<String> str;
+                List<Cliente> clt;
+                str = crud.getMetadata();
+                clt = crud.readAll();
+                request.setAttribute("cltCampos", str);
+                request.setAttribute("cliente", clt);
+            }
             if(sa.equalsIgnoreCase("Alterar")){
                 int id = Integer.valueOf(request.getParameter("cliente"));
                 Cliente cliente = crud.readOne(id);
