@@ -25,7 +25,7 @@ public class ClienteCRUD {
         conexao = new Conector().getConnection();
     }
     
-    public void create(model.Cliente cliente){
+    public void create(model.Cliente cliente) {
         String sql = "insert into cliente values (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             preparador = conexao.prepareStatement(sql);
@@ -111,7 +111,7 @@ public class ClienteCRUD {
             resultado.close();
             preparador.close();
             return cliente;
-        } catch(SQLException e){
+        } catch(SQLException e) {
             e.printStackTrace();
             return null;
         }
@@ -150,7 +150,7 @@ public class ClienteCRUD {
             preparador.setInt(3, cliente.getId());
             preparador.execute();
             preparador.close();
-        } catch(SQLException e){
+        } catch(SQLException e) {
         }
     }
     
@@ -163,5 +163,24 @@ public class ClienteCRUD {
             preparador.close();
         } catch(SQLException e) {
         }
+    }
+    
+    public List<String> getMetadata() {
+        List<String> metadata = null;
+        metadata.add("Id");
+        metadata.add("Nome");
+        metadata.add("Endereço");
+        metadata.add("Bairro");
+        metadata.add("Cidade");
+        metadata.add("UF");
+        metadata.add("CPF");
+        metadata.add("Referência");
+        metadata.add("Identidade");
+        metadata.add("Telefone");
+        metadata.add("Celular");
+        metadata.add("Cartão");
+        metadata.add("Bandeira");
+        
+        return metadata;
     }
 }

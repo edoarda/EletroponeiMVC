@@ -50,7 +50,7 @@ public class CategoriaCRUD {
             resultado.close();
             preparador.close();
             return lista;
-        } catch(SQLException e){
+        } catch(SQLException e) {
             return null;
         }
     }
@@ -72,7 +72,7 @@ public class CategoriaCRUD {
             resultado.close();
             preparador.close();
             return categoria;
-        } catch(SQLException e){
+        } catch(SQLException e) {
             return null;
         }
     }
@@ -94,7 +94,7 @@ public class CategoriaCRUD {
             resultado.close();
             preparador.close();
             return categoria;
-        } catch(SQLException e){
+        } catch(SQLException e) {
             return null;
         }
     }
@@ -108,7 +108,7 @@ public class CategoriaCRUD {
             preparador.setInt(3, categoria.getId());
             preparador.execute();
             preparador.close();
-        } catch(SQLException e){
+        } catch(SQLException e) {
         }
     }
     
@@ -122,4 +122,12 @@ public class CategoriaCRUD {
         } catch(SQLException e) {
         }
     }
+    
+    public List<String> getMetadata() {
+        List<String> metadata = null;
+        metadata.add("Id");
+        metadata.add("Nome");
+        metadata.add("Descrição");
+        return metadata;
+ }
 }

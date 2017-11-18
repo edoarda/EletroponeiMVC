@@ -135,4 +135,13 @@ public class ProdutoCRUD {
         } catch(SQLException e) {
         }
     }
+    
+    public List<String> getMetadata() {
+        List<String> metadata = null;
+        metadata.add("Id");
+        metadata.add("Nome");
+        metadata.add("Valor");
+        metadata.add("Descrição");
+        return metadata;
+    }
 }
