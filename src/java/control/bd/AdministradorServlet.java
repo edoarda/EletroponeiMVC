@@ -7,7 +7,6 @@ package control.bd;
 
 import control.dao.AdministradorCRUD;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -112,7 +111,7 @@ public class AdministradorServlet extends HttpServlet {
                 request.setAttribute("administrador", adm);
             }
             if(sa.equalsIgnoreCase("Alterar")){
-                int aid = Integer.valueOf(request.getParameter("administrador"));
+                int aid = Integer.valueOf(request.getParameter("id"));
                 Administrador a = crud.readOne(aid);
                 //c.setDescricao("mudando");// nao entendi direito o q isso ta fazendo, mudei ele depois, se nao tiver diferença tirar essa linha
                 //adicionei o nome aqui
@@ -122,7 +121,7 @@ public class AdministradorServlet extends HttpServlet {
             }
 
             if(sa.equalsIgnoreCase("Excluir")){
-                int aid = Integer.valueOf(request.getParameter("administrador"));
+                int aid = Integer.valueOf(request.getParameter("id"));
                 Administrador a = new Administrador();
                 a.setId(aid);
                 crud.delete(a);
