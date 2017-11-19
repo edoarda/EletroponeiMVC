@@ -4,14 +4,29 @@
     Author     : edoarda
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<div class='table-responsive'>
+    <table class="table">
+        <thead>
+            <tr>
+               <c:forEach var="pdtH" items="${pdtHead}">
+                   <th>${pdtH }</th>
+               </c:forEach>
+                   <th>Editar</th>
+                   <th>Deletar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach var="pdt" items="${produto }">
+                <tr>
+                <td>${pdt.id }</td>
+                <td>${pdt.idCategoria }</td>
+                <td>${pdt.nome }</td>
+                <td>${pdt.descricao }</td>
+                <td>${pdt.valor }</td>
+                <td><a href='ProdutoServlet?opcao=editar&id=${pdt.id }'>EDITAR</a></td>
+                <td><a href='ProdutoServlet?opcao=deletar&id=${pdt.id }'>DELETAR</a></td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table> 
+</div>

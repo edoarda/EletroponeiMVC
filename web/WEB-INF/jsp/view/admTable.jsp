@@ -4,14 +4,27 @@
     Author     : edoarda
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<div class='table-responsive'>
+    <table class="table">
+        <thead>
+            <tr>
+               <c:forEach var="admH" items="${admHead}">
+                   <th>${admH }</th>
+               </c:forEach>
+                   <th>Editar</th>
+                   <th>Deletar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach var="adm" items="${administrador }">
+                <tr>
+                <td>${adm.id }</td>
+                <td>${adm.login }</td>
+                <td>*****</td>
+                <td><a href='AdministradorServlet?opcao=editar&id=${adm.id }'>EDITAR</a></td>
+                <td><a href='AdministradorServlet?opcao=deletar&id=${adm.id }'>DELETAR</a></td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+</div>

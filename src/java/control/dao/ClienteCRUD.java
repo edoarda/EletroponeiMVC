@@ -119,17 +119,17 @@ public class ClienteCRUD {
     
     public void update(model.Cliente cliente){
         String sql = "update cliente set nome = ? ,"
-                + " endereço = ?"
-                + " bairro = ?"
-                + " cidade = ?"
-                + " cep = ?"
-                + " uf = ?"
-                + " cpf = ?"
-                + " referencia = ?"
-                + " identidade = ?"
-                + " telefone = ?"
-                + " celular = ?"
-                + " cartao = ?"
+                + " endereço = ? ,"
+                + " bairro = ? ,"
+                + " cidade = ? ,"
+                + " cep = ? ,"
+                + " uf = ? ,"
+                + " cpf = ? ,"
+                + " referencia = ? ,"
+                + " identidade = ? ,"
+                + " telefone = ? ,"
+                + " celular = ? ,"
+                + " cartao = ? ,"
                 + " bandeira = ?"
                 + " where id = ?";
         try {
@@ -147,10 +147,11 @@ public class ClienteCRUD {
             preparador.setString(11, cliente.getCelular());
             preparador.setString(12, cliente.getCartao());
             preparador.setString(13, cliente.getBandeira());
-            preparador.setInt(3, cliente.getId());
+            preparador.setInt(14, cliente.getId());
             preparador.execute();
             preparador.close();
         } catch(SQLException e) {
+            e.printStackTrace();
         }
     }
     
