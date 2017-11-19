@@ -3,6 +3,7 @@ h1 {
 }
 
 h5 {
+    padding-top: 5%;
     text-align: center;
 }
 
@@ -15,7 +16,9 @@ h5 {
     padding-right: 5%;
 }
 
+/*
 .table-responsive {
-    padding-top: 5%;
+    padding-bottom: 5%;
 }
+*/
 

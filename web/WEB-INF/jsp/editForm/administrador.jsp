@@ -10,18 +10,18 @@
     <form action='SubmitUpdate' method='post'>
     
         <div class='form-group'>
-            <label for="id">Id</label>
+            <label for="id">Id:</label>
             <input type='text' class='form-control' name='id' value='${administrador.id}' required>
         </div>
         
         <div class='form-group'>
-            <label for="login">Login</label>
+            <label for="login">Login:</label>
             <input type='text' class='form-control' name='login' value='${administrador.login}' required>
         </div>
         
         <div class='form-group'>
-            <label for="id">Id</label>
-            <input type='password' class='form-control' name='id' value='${administrador.senha}' required>
+            <label for="senha">Senha:</label>
+            <input type='password' class='form-control' name='senha' value='${administrador.senha}' required>
         </div>
 
         <div class='text-center'>

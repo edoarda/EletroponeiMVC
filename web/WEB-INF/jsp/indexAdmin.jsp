@@ -28,8 +28,8 @@
                     <td>${adm.id }</td>
                     <td>${adm.login }</td>
                     <td>*****</td>
-                    <td><a href='/Eletroponei/AdministradorServlet?opcao=editar&id=${adm.id }'>EDITAR</a></td>
-                    <td><a href='/Eletroponei/AdministradorServlet?id=${adm.id }'>DELETAR</a></td>
+                    <td><a href='AdministradorServlet?opcao=editar&id=${adm.id }'>EDITAR</a></td>
+                    <td><a href='AdministradorServlet?opcao=deletar&id=${adm.id }'>DELETAR</a></td>
                     </tr>
                 </c:forEach>
             </tbody>
@@ -37,8 +37,8 @@
     </div>
         
     <!--CATEGORIA-->
+    <h5><a href="">Adicionar à Categoria</a></h5>
     <div class='table-responsive'>
-        <h5><a href="">Adicionar à Categoria</a></h5>
         <table class="table">
             <thead>
                 <tr>
@@ -55,8 +55,8 @@
                     <td>${cat.id }</td>
                     <td>${cat.nome }</td>
                     <td>${cat.descricao }</td>
-                    <td><a href='/Eletroponei/CategoriaServlet?id=${cat.id }'>EDITAR</a></td>
-                    <td><a href='/Eletroponei/CategoriaServlet?id=${cat.id }'>DELETAR</a></td>
+                    <td><a href='/Eletroponei/CategoriaServlet?opcao=editar&id=${cat.id }'>EDITAR</a></td>
+                    <td><a href='/Eletroponei/CategoriaServlet?opcao=deletar&id=${cat.id }'>DELETAR</a></td>
                     </tr>
                 </c:forEach>
             </tbody>
@@ -65,8 +65,8 @@
         
 
         <!--PRODUTO-->
+    <h5><a href="">Adicionar à Produto</a></h5>
     <div class='table-responsive'>
-        <h5><a href="">Adicionar à Produto</a></h5>
         <table class="table">
             <thead>
                 <tr>
@@ -85,8 +85,8 @@
                     <td>${pdt.nome }</td>
                     <td>${pdt.descricao }</td>
                     <td>${pdt.valor }</td>
-                    <td><a href='/Eletroponei/ProdutoServlet?id=${pdt.id }'>EDITAR</a></td>
-                    <td><a href='/Eletroponei/ProdutoServlet?id=${pdt.id }'>DELETAR</a></td>
+                    <td><a href='/Eletroponei/ProdutoServlet?opcao=editar&id=${pdt.id }'>EDITAR</a></td>
+                    <td><a href='/Eletroponei/ProdutoServlet?opcao=deletar&id=${pdt.id }'>DELETAR</a></td>
                     </tr>
                 </c:forEach>
             </tbody>
@@ -94,8 +94,8 @@
     </div>
         
         <!--CLIENTE-->
+    <h5><a href="">Adicionar à Cliente</a></h5>
     <div class='table-responsive'>
-        <h5><a href="">Adicionar à Cliente</a></h5>
         <table class="table">
             <thead>
                 <tr>
@@ -123,8 +123,8 @@
                     <td>${clt.celular }</td>
                     <td>${clt.cartao }</td>
                     <td>${clt.bandeira }</td>
-                    <td><a href='/Eletroponei/ClienteServlet?id=${clt.id }'>EDITAR</a></td>
-                    <td><a href='/Eletroponei/ClienteServlet?id=${clt.id }'>DELETAR</a></td>
+                    <td><a href='/Eletroponei/ClienteServlet?opcao=editar&id=${clt.id }'>EDITAR</a></td>
+                    <td><a href='/Eletroponei/ClienteServlet?opcao=deletar&id=${clt.id }'>DELETAR</a></td>
                     </tr>
                 </c:forEach>
             </tbody>
@@ -132,8 +132,8 @@
     </div>
         
         <!--COMPRA-->
+    <h5><a href="">Adicionar à Compra</a></h5>
     <div class='table-responsive'>
-        <h5><a href="">Adicionar à Compra</a></h5>
         <table class="table">
             <thead>
                 <tr>
@@ -150,8 +150,8 @@
                     <td>${cmp.id }</td>
                     <td>${cmp.idCliente }</td>
                     <td>${cmp.idProduto }</td>
-                    <td><a href='/Eletroponei/CompraServlet?id=${cmp.id }'>EDITAR</a></td>
-                    <td><a href='/Eletroponei/CompraServlet?id=${cmp.id }'>DELETAR</a></td>
+                    <td><a href='/Eletroponei/CompraServlet?opcao=editar&id=${cmp.id }'>EDITAR</a></td>
+                    <td><a href='/Eletroponei/CompraServlet?opcao=deletar&id=${cmp.id }'>DELETAR</a></td>
                     </tr>
                 </c:forEach>
             </tbody>
