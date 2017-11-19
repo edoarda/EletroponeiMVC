@@ -3,11 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/edoarda/NetBeansProjects/EletroponeiMVC/src/java/control/dao/CategoriaCRUD.java</file>
-            <file>file:/home/edoarda/NetBeansProjects/EletroponeiMVC/src/java/control/dao/ProdutoCRUD.java</file>
-            <file>file:/home/edoarda/NetBeansProjects/EletroponeiMVC/src/java/control/dao/CompraCRUD.java</file>
-            <file>file:/home/edoarda/NetBeansProjects/EletroponeiMVC/src/java/control/dao/AdministradorCRUD.java</file>
             <file>file:/home/edoarda/NetBeansProjects/EletroponeiMVC/src/java/control/dao/ClienteCRUD.java</file>
+            <file>file:/home/edoarda/NetBeansProjects/EletroponeiMVC/web/WEB-INF/jsp/view/catTable.jsp</file>
+            <file>file:/home/edoarda/NetBeansProjects/EletroponeiMVC/web/WEB-INF/jsp/view/admTable.jsp</file>
+            <file>file:/home/edoarda/NetBeansProjects/EletroponeiMVC/web/WEB-INF/jsp/view/cmpTable.jsp</file>
+            <file>file:/home/edoarda/NetBeansProjects/EletroponeiMVC/web/WEB-INF/jsp/view/cltTable.jsp</file>
+            <file>file:/home/edoarda/NetBeansProjects/EletroponeiMVC/src/java/control/dao/AdministradorCRUD.java</file>
+            <file>file:/home/edoarda/NetBeansProjects/EletroponeiMVC/src/java/model/Categoria.java</file>
+            <file>file:/home/edoarda/NetBeansProjects/EletroponeiMVC/src/java/control/dao/CategoriaCRUD.java</file>
+            <file>file:/home/edoarda/NetBeansProjects/EletroponeiMVC/src/java/control/servlet/AdminIndexServlet.java</file>
+            <file>file:/home/edoarda/NetBeansProjects/EletroponeiMVC/src/java/control/dao/CompraCRUD.java</file>
+            <file>file:/home/edoarda/NetBeansProjects/EletroponeiMVC/src/java/control/bd/AdministradorServlet.java</file>
+            <file>file:/home/edoarda/NetBeansProjects/EletroponeiMVC/src/java/control/dao/ProdutoCRUD.java</file>
+            <file>file:/home/edoarda/NetBeansProjects/EletroponeiMVC/web/WEB-INF/jsp/view/pdtTable.jsp</file>
         </group>
     </open-files>
 </project-private>

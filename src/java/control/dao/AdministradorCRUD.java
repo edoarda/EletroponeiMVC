@@ -133,7 +133,7 @@ public class AdministradorCRUD {
     
     public List<String> getMetadata() {
         List<String> metadata = null;
-        metadata.add("Id");
+        metadata.add(0, "Id");
         metadata.add("Login");
         metadata.add("Senha");
         return metadata;
