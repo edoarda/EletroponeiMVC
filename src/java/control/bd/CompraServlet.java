@@ -106,17 +106,17 @@ public class CompraServlet extends HttpServlet {
                 request.setAttribute("compra", cmp);
             }
             if(sa.equalsIgnoreCase("Alterar")){
-                int id = Integer.valueOf(request.getParameter("compra"));
+                int id = Integer.valueOf(request.getParameter("id"));
                 Compra compra = crud.readOne(id);
                 //c.setDescricao("mudando");// nao entendi direito o q isso ta fazendo, mudei ele depois, se nao tiver diferença tirar essa linha
                 //adicionei o nome aqui
-                compra.setIdCliente(Integer.parseInt(request.getParameter("idcliente")));
-                compra.setIdProduto(Integer.parseInt(request.getParameter("idproduto")));
+                compra.setIdCliente(Integer.parseInt(request.getParameter("idCliente")));
+                compra.setIdProduto(Integer.parseInt(request.getParameter("idProduto")));
                 crud.update(compra);
             }
 
             if(sa.equalsIgnoreCase("Excluir")){
-                int id = Integer.valueOf(request.getParameter("compra"));
+                int id = Integer.valueOf(request.getParameter("id"));
                 Compra compra = new Compra();
                 compra.setId(id);
                 crud.delete(compra);

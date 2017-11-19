@@ -8,7 +8,10 @@
 <jsp:include page="../header.jsp" />
 
 <div class='container formy'>
-    <form action='SubmitUpdate' method='post'>
+    <form action='ProdutoServlet' method='post'>
+        <div class='form-group'>
+            <input type='hidden' class='form-control' name='submitAction' value='alterar'>
+        </div>
     
         <div class='form-group'>
             <label for="id">Id:</label>

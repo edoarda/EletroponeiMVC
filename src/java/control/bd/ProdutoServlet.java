@@ -108,19 +108,19 @@ public class ProdutoServlet extends HttpServlet {
                 request.setAttribute("produto", pdt);
             }
             if(sa.equalsIgnoreCase("Alterar")){
-                int id = Integer.valueOf(request.getParameter("produto"));
+                int id = Integer.valueOf(request.getParameter("id"));
                 Produto produto = crud.readOne(id);
                 //c.setDescricao("mudando");// nao entendi direito o q isso ta fazendo, mudei ele depois, se nao tiver diferença tirar essa linha
                 //adicionei o nome aqui
-                produto.setIdCategoria(Integer.parseInt(request.getParameter("idcategoria")));
+                produto.setIdCategoria(Integer.parseInt(request.getParameter("idCategoria")));
                 produto.setNome(request.getParameter("nome"));
                 produto.setDescricao(request.getParameter("descricao"));
-                produto.setValor(Double.parseDouble(request.getParameter("nome")));
+                produto.setValor(Double.parseDouble(request.getParameter("valor")));
                 crud.update(produto);
             }
 
             if(sa.equalsIgnoreCase("Excluir")){
-                int id = Integer.valueOf(request.getParameter("produto"));
+                int id = Integer.valueOf(request.getParameter("id"));
                 Produto produto = new Produto();
                 produto.setId(id);
                 crud.delete(produto);
