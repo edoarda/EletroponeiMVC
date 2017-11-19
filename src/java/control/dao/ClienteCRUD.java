@@ -93,7 +93,7 @@ public class ClienteCRUD {
             if(resultado.next()){
                 cliente.setId(resultado.getInt("id"));
                 cliente.setNome(resultado.getString("nome"));
-                cliente.setEndereco(resultado.getString("endereco"));
+                cliente.setEndereco(resultado.getString("endereço"));
                 cliente.setBairro(resultado.getString("bairro"));
                 cliente.setCidade(resultado.getString("cidade"));
                 cliente.setCep(resultado.getString("cep"));

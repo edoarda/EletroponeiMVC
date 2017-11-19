@@ -94,7 +94,7 @@ public class CategoriaServlet extends HttpServlet {
                 request.setAttribute("categoria", cat);
             }
             if(sa.equalsIgnoreCase("Alterar")){
-                int catid = Integer.valueOf(request.getParameter("categorias"));
+                int catid = Integer.valueOf(request.getParameter("id"));
                 Categoria c = crud.readOne(catid);
                 c.setDescricao("mudando");// nao entendi direito o q isso ta fazendo, mudei ele depois, se nao tiver diferença tirar essa linha
                 //adicionei o nome aqui
@@ -104,7 +104,7 @@ public class CategoriaServlet extends HttpServlet {
             }
 
             if(sa.equalsIgnoreCase("Excluir")){
-                int catid = Integer.valueOf(request.getParameter("categorias"));
+                int catid = Integer.valueOf(request.getParameter("id"));
                 Categoria c = new Categoria();
                 c.setId(catid);
                 crud.delete(c);

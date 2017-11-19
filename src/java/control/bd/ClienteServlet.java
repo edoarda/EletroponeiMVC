@@ -118,7 +118,7 @@ public class ClienteServlet extends HttpServlet {
                 request.setAttribute("cliente", clt);
             }
             if(sa.equalsIgnoreCase("Alterar")){
-                int id = Integer.valueOf(request.getParameter("cliente"));
+                int id = Integer.valueOf(request.getParameter("id"));
                 Cliente cliente = crud.readOne(id);
                 //c.setDescricao("mudando");// nao entendi direito o q isso ta fazendo, mudei ele depois, se nao tiver diferença tirar essa linha
                 //adicionei o nome aqui
@@ -139,7 +139,7 @@ public class ClienteServlet extends HttpServlet {
             }
 
             if(sa.equalsIgnoreCase("Excluir")){
-                int id = Integer.valueOf(request.getParameter("cliente"));
+                int id = Integer.valueOf(request.getParameter("id"));
                 Cliente cliente = new Cliente();
                 cliente.setId(id);
                 crud.delete(cliente);
