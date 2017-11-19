@@ -90,7 +90,7 @@ public class ClienteServlet extends HttpServlet {
         //processRequest(request, response);
         String sa = request.getParameter("submitAction");
         ClienteCRUD crud = new ClienteCRUD();
-        if(sa == null) {
+        if(sa.equalsIgnoreCase("criar")) {
             Cliente cliente = new Cliente();
             //administrador.setDescricao(request.getParameter("descricao"));
             //adicionei o nome aqui

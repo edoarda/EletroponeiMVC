@@ -10,7 +10,7 @@
     <h1 class="formy">Vc entrou seu bosta</h1>
     
     <!--ADMINISTRADOR -->
-    <h5><a href="">Adicionar à Administrador</a></h5>
+    <h5><a href="Redirect?pagina=/createForm/administrador">Adicionar à Administrador</a></h5>
     <div class='table-responsive'>
         <table class="table">
             <thead>
@@ -37,7 +37,7 @@
     </div>
         
     <!--CATEGORIA-->
-    <h5><a href="">Adicionar à Categoria</a></h5>
+    <h5><a href="Redirect?pagina=/createForm/categoria">Adicionar à Categoria</a></h5>
     <div class='table-responsive'>
         <table class="table">
             <thead>
@@ -65,7 +65,7 @@
         
 
         <!--PRODUTO-->
-    <h5><a href="">Adicionar à Produto</a></h5>
+    <h5><a href="Redirect?pagina=/createForm/produto">Adicionar à Produto</a></h5>
     <div class='table-responsive'>
         <table class="table">
             <thead>
@@ -94,7 +94,7 @@
     </div>
         
         <!--CLIENTE-->
-    <h5><a href="">Adicionar à Cliente</a></h5>
+    <h5><a href="Redirect?pagina=/createForm/cliente">Adicionar à Cliente</a></h5>
     <div class='table-responsive'>
         <table class="table">
             <thead>
@@ -132,7 +132,7 @@
     </div>
         
         <!--COMPRA-->
-    <h5><a href="">Adicionar à Compra</a></h5>
+    <h5><a href="Redirect?pagina=/createForm/compra">Adicionar à Compra</a></h5>
     <div class='table-responsive'>
         <table class="table">
             <thead>

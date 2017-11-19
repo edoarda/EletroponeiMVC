@@ -89,14 +89,14 @@ public class ProdutoServlet extends HttpServlet {
             throws ServletException, IOException {
         String sa = request.getParameter("submitAction");
         ProdutoCRUD crud = new ProdutoCRUD();
-        if(sa == null) {
+        if(sa.equalsIgnoreCase("criar")) {
             Produto produto = new Produto();
             //administrador.setDescricao(request.getParameter("descricao"));
             //adicionei o nome aqui
-            produto.setIdCategoria(Integer.parseInt(request.getParameter("idcategoria")));
+            produto.setIdCategoria(Integer.parseInt(request.getParameter("idCategoria")));
             produto.setNome(request.getParameter("nome"));
             produto.setDescricao(request.getParameter("descricao"));
-            produto.setValor(Double.parseDouble(request.getParameter("nome")));
+            produto.setValor(Double.parseDouble(request.getParameter("valor")));
             crud.create(produto);
         } else {
             if(sa.equalsIgnoreCase("Ver")){

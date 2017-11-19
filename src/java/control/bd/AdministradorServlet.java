@@ -94,7 +94,7 @@ public class AdministradorServlet extends HttpServlet {
         //processRequest(request, response);
         String sa = request.getParameter("submitAction");
         AdministradorCRUD crud = new AdministradorCRUD();
-        if(sa == null) {
+        if(sa.equalsIgnoreCase("criar")) {
             Administrador administrador = new Administrador();
             //administrador.setDescricao(request.getParameter("descricao"));
             //adicionei o nome aqui

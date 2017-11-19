@@ -78,7 +78,7 @@ public class CategoriaServlet extends HttpServlet {
             throws ServletException, IOException {
         String sa = request.getParameter("submitAction");
         CategoriaCRUD crud = new CategoriaCRUD();
-        if(sa == null) {
+        if(sa.equalsIgnoreCase("criar")) {
             Categoria categoria = new Categoria();
             categoria.setDescricao(request.getParameter("descricao"));
             //adicionei o nome aqui

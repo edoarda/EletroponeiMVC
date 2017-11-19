@@ -89,12 +89,12 @@ public class CompraServlet extends HttpServlet {
             throws ServletException, IOException {
         String sa = request.getParameter("submitAction");
         CompraCRUD crud = new CompraCRUD();
-        if(sa == null) {
+        if(sa.equalsIgnoreCase("criar")) {
             Compra compra = new Compra();
             //administrador.setDescricao(request.getParameter("descricao"));
             //adicionei o nome aqui
-            compra.setIdCliente(Integer.parseInt(request.getParameter("idcliente")));
-            compra.setIdProduto(Integer.parseInt(request.getParameter("idproduto")));
+            compra.setIdCliente(Integer.parseInt(request.getParameter("idCliente")));
+            compra.setIdProduto(Integer.parseInt(request.getParameter("idProduto")));
             crud.create(compra);
         } else {
             if(sa.equalsIgnoreCase("Ver")){
