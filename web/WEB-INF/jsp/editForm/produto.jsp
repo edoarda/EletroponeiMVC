@@ -17,7 +17,7 @@
         
         <div class='form-group'>
             <label for="idCategoria">IdCategoria:</label>
-            <input type='number' class='form-control' name='idCategoria' value='${produto.idcategoria}' required>
+            <input type='number' class='form-control' name='idCategoria' value='${produto.idCategoria}' required>
         </div>
         
         <div class='form-group'>

@@ -17,12 +17,12 @@
         
         <div class='form-group'>
             <label for="idCliente">IdCliente:</label>
-            <input type='number' class='form-control' name='idCliente' value='${compra.idcliente}' required>
+            <input type='number' class='form-control' name='idCliente' value='${compra.idCliente}' required>
         </div>
         
         <div class='form-group'>
             <label for="idProduto">IdProduto:</label>
-            <input type='number' class='form-control' name='idProduto' value='${compra.idproduto}' required>
+            <input type='number' class='form-control' name='idProduto' value='${compra.idProduto}' required>
         </div>
 
         <div class='text-center'>

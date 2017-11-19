@@ -8,10 +8,10 @@
 <jsp:include page="header.jsp" />
 <div class='container'>
     <h1 class="formy">Vc entrou seu bosta</h1>
+    
+    <!--ADMINISTRADOR -->
+    <h5><a href="">Adicionar à Administrador</a></h5>
     <div class='table-responsive'>
-        
-        <!--ADMINISTRADOR -->
-        <h5><a href="">Adicionar à Administrador</a></h5>
         <table class="table">
             <thead>
                 <tr>
@@ -55,8 +55,8 @@
                     <td>${cat.id }</td>
                     <td>${cat.nome }</td>
                     <td>${cat.descricao }</td>
-                    <td><a href='/Eletroponei/CategoriaServlet?opcao=editar&id=${cat.id }'>EDITAR</a></td>
-                    <td><a href='/Eletroponei/CategoriaServlet?opcao=deletar&id=${cat.id }'>DELETAR</a></td>
+                    <td><a href='CategoriaServlet?opcao=editar&id=${cat.id }'>EDITAR</a></td>
+                    <td><a href='CategoriaServlet?opcao=deletar&id=${cat.id }'>DELETAR</a></td>
                     </tr>
                 </c:forEach>
             </tbody>
@@ -85,8 +85,8 @@
                     <td>${pdt.nome }</td>
                     <td>${pdt.descricao }</td>
                     <td>${pdt.valor }</td>
-                    <td><a href='/Eletroponei/ProdutoServlet?opcao=editar&id=${pdt.id }'>EDITAR</a></td>
-                    <td><a href='/Eletroponei/ProdutoServlet?opcao=deletar&id=${pdt.id }'>DELETAR</a></td>
+                    <td><a href='ProdutoServlet?opcao=editar&id=${pdt.id }'>EDITAR</a></td>
+                    <td><a href='ProdutoServlet?opcao=deletar&id=${pdt.id }'>DELETAR</a></td>
                     </tr>
                 </c:forEach>
             </tbody>
@@ -123,8 +123,8 @@
                     <td>${clt.celular }</td>
                     <td>${clt.cartao }</td>
                     <td>${clt.bandeira }</td>
-                    <td><a href='/Eletroponei/ClienteServlet?opcao=editar&id=${clt.id }'>EDITAR</a></td>
-                    <td><a href='/Eletroponei/ClienteServlet?opcao=deletar&id=${clt.id }'>DELETAR</a></td>
+                    <td><a href='ClienteServlet?opcao=editar&id=${clt.id }'>EDITAR</a></td>
+                    <td><a href='ClienteServlet?opcao=deletar&id=${clt.id }'>DELETAR</a></td>
                     </tr>
                 </c:forEach>
             </tbody>
@@ -150,8 +150,8 @@
                     <td>${cmp.id }</td>
                     <td>${cmp.idCliente }</td>
                     <td>${cmp.idProduto }</td>
-                    <td><a href='/Eletroponei/CompraServlet?opcao=editar&id=${cmp.id }'>EDITAR</a></td>
-                    <td><a href='/Eletroponei/CompraServlet?opcao=deletar&id=${cmp.id }'>DELETAR</a></td>
+                    <td><a href='CompraServlet?opcao=editar&id=${cmp.id }'>EDITAR</a></td>
+                    <td><a href='CompraServlet?opcao=deletar&id=${cmp.id }'>DELETAR</a></td>
                     </tr>
                 </c:forEach>
             </tbody>
