@@ -28,7 +28,7 @@
                     <td>${adm.id }</td>
                     <td>${adm.login }</td>
                     <td>*****</td>
-                    <td><a href='/Eletroponei/AdministradorServlet?id=${adm.id }'>EDITAR</a></td>
+                    <td><a href='/Eletroponei/AdministradorServlet?opcao=editar&id=${adm.id }'>EDITAR</a></td>
                     <td><a href='/Eletroponei/AdministradorServlet?id=${adm.id }'>DELETAR</a></td>
                     </tr>
                 </c:forEach>

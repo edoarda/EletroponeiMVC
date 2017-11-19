@@ -9,6 +9,7 @@ import control.dao.AdministradorCRUD;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -61,7 +62,23 @@ public class AdministradorServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String opcao = request.getParameter("opcao");
+        
+        if(opcao.equalsIgnoreCase("editar")) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            AdministradorCRUD crud = new AdministradorCRUD();
+            List<String> str;
+            Administrador adm;
+            str = crud.getMetadata();
+            adm = crud.readOne(id);
+            request.setAttribute("admCampos", str);
+            request.setAttribute("administrador", adm);
+
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/editForm/administrador.jsp");
+            dispatcher.forward(request, response);
+        }
+        
+        
     }
 
     /**
