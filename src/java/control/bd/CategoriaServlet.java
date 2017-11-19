@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Categoria;
 import control.dao.CategoriaCRUD;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 
 /**
  *
@@ -50,7 +51,18 @@ public class CategoriaServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String opcao = request.getParameter("opcao");
+        
+        if(opcao.equalsIgnoreCase("editar")) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            CategoriaCRUD crud = new CategoriaCRUD();
+            Categoria cat;
+            cat = crud.readOne(id);
+            request.setAttribute("categoria", cat);
+
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/editForm/categoria.jsp");
+            dispatcher.forward(request, response);
+        }
     }
 
     /**

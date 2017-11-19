@@ -67,11 +67,11 @@ public class AdministradorServlet extends HttpServlet {
         if(opcao.equalsIgnoreCase("editar")) {
             int id = Integer.parseInt(request.getParameter("id"));
             AdministradorCRUD crud = new AdministradorCRUD();
-            List<String> str;
+            //List<String> str;
             Administrador adm;
-            str = crud.getMetadata();
+            //str = crud.getMetadata();
             adm = crud.readOne(id);
-            request.setAttribute("admCampos", str);
+            //request.setAttribute("admCampos", str);
             request.setAttribute("administrador", adm);
 
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/editForm/administrador.jsp");

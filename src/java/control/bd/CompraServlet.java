@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Compra;
 import control.dao.CompraCRUD;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 
 /**
  *
@@ -61,7 +62,18 @@ public class CompraServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String opcao = request.getParameter("opcao");
+        
+        if(opcao.equalsIgnoreCase("editar")) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            CompraCRUD crud = new CompraCRUD();
+            Compra cmp;
+            cmp = crud.readOne(id);
+            request.setAttribute("compra", cmp);
+
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/editForm/compra.jsp");
+            dispatcher.forward(request, response);
+        }
     }
 
     /**

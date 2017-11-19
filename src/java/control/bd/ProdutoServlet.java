@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Produto;
 import control.dao.ProdutoCRUD;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 
 /**
  *
@@ -61,7 +62,18 @@ public class ProdutoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String opcao = request.getParameter("opcao");
+        
+        if(opcao.equalsIgnoreCase("editar")) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            ProdutoCRUD crud = new ProdutoCRUD();
+            Produto pdt;
+            pdt = crud.readOne(id);
+            request.setAttribute("produto", pdt);
+
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/editForm/produto.jsp");
+            dispatcher.forward(request, response);
+        }
     }
 
     /**

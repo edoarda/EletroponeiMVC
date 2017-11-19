@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Cliente;
 import control.dao.ClienteCRUD;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 
 /**
  *
@@ -61,7 +62,18 @@ public class ClienteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String opcao = request.getParameter("opcao");
+        
+        if(opcao.equalsIgnoreCase("editar")) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            ClienteCRUD crud = new ClienteCRUD();
+            Cliente clt;
+            clt = crud.readOne(id);
+            request.setAttribute("cliente", clt);
+
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/editForm/cliente.jsp");
+            dispatcher.forward(request, response);
+        }
     }
 
     /**
