@@ -137,8 +137,9 @@ public class ProdutoCRUD {
     }
     
     public List<String> getMetadata() {
-        List<String> metadata = null;
+        List<String> metadata = new ArrayList<>();
         metadata.add("Id");
+        metadata.add("IdCategoria");
         metadata.add("Nome");
         metadata.add("Valor");
         metadata.add("Descrição");

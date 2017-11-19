@@ -132,8 +132,8 @@ public class AdministradorCRUD {
     }
     
     public List<String> getMetadata() {
-        List<String> metadata = null;
-        metadata.add(0, "Id");
+        List<String> metadata = new ArrayList<>();
+        metadata.add("Id");
         metadata.add("Login");
         metadata.add("Senha");
         return metadata;

@@ -102,7 +102,7 @@ public class CompraCRUD {
     }
     
     public List<String> getMetadata() {
-        List<String> metadata = null;
+        List<String> metadata = new ArrayList<>();
         metadata.add("Id");
         metadata.add("IdCliente");
         metadata.add("IdProduto");

@@ -42,7 +42,7 @@ public class AdminIndexServlet extends HttpServlet {
         adm = readAdm.readAll();
         str = readAdm.getMetadata();
         request.setAttribute("administrador", adm);
-        request.setAttribute("admH", str);
+        request.setAttribute("admHead", str);
         //out.println("VOCE É " + adm.get(0).getLogin());
         
         List<Categoria> ctg;

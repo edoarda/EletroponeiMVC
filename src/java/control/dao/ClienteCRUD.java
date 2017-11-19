@@ -59,7 +59,7 @@ public class ClienteCRUD {
             while(resultado.next()){
                 model.Cliente cliente = new model.Cliente(resultado.getInt("id"), 
                         resultado.getString("nome"), 
-                        resultado.getString("endereco"),
+                        resultado.getString("endereço"),
                         resultado.getString("bairro"),
                         resultado.getString("cidade"),
                         resultado.getString("cep"),
@@ -166,12 +166,13 @@ public class ClienteCRUD {
     }
     
     public List<String> getMetadata() {
-        List<String> metadata = null;
+        List<String> metadata = new ArrayList<>();
         metadata.add("Id");
         metadata.add("Nome");
         metadata.add("Endereço");
         metadata.add("Bairro");
         metadata.add("Cidade");
+        metadata.add("CEP");
         metadata.add("UF");
         metadata.add("CPF");
         metadata.add("Referência");
