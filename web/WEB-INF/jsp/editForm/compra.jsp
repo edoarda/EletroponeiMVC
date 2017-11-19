@@ -1,8 +1,9 @@
 <%-- 
-    Document   : administrador
-    Created on : Nov 19, 2017, 5:28:00 PM
-    Author     : edoarda
+    Document   : compra
+    Created on : 19/11/2017, 18:17:22
+    Author     : Thales
 --%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../header.jsp" />
 
@@ -11,17 +12,17 @@
     
         <div class='form-group'>
             <label for="id">Id:</label>
-            <input type='number' class='form-control' name='id' value='${administrador.id}' required>
+            <input type='number' class='form-control' name='id' value='${compra.id}' required>
         </div>
         
         <div class='form-group'>
-            <label for="login">Login:</label>
-            <input type='text' class='form-control' name='login' value='${administrador.login}' required>
+            <label for="idCliente">IdCliente:</label>
+            <input type='number' class='form-control' name='idCliente' value='${compra.idcliente}' required>
         </div>
         
         <div class='form-group'>
-            <label for="senha">Senha:</label>
-            <input type='password' class='form-control' name='senha' value='${administrador.senha}' required>
+            <label for="idProduto">IdProduto:</label>
+            <input type='number' class='form-control' name='idProduto' value='${compra.idproduto}' required>
         </div>
 
         <div class='text-center'>
