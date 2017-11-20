@@ -17,6 +17,7 @@ import model.Categoria;
 import control.dao.CategoriaCRUD;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -51,17 +52,25 @@ public class CategoriaServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String opcao = request.getParameter("opcao");
+        HttpSession session = request.getSession();
         
-        if(opcao.equalsIgnoreCase("editar")) {
-            int id = Integer.parseInt(request.getParameter("id"));
-            CategoriaCRUD crud = new CategoriaCRUD();
-            Categoria cat;
-            cat = crud.readOne(id);
-            request.setAttribute("categoria", cat);
-
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/editForm/categoria.jsp");
+        if(null == session.getAttribute("logado")) {
+            //User is NOT logged in.
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.htm");
             dispatcher.forward(request, response);
+        } else {  
+            String opcao = request.getParameter("opcao");
+
+            if(opcao.equalsIgnoreCase("editar")) {
+                int id = Integer.parseInt(request.getParameter("id"));
+                CategoriaCRUD crud = new CategoriaCRUD();
+                Categoria cat;
+                cat = crud.readOne(id);
+                request.setAttribute("categoria", cat);
+
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/editForm/categoria.jsp");
+                dispatcher.forward(request, response);
+            }
         }
     }
 
@@ -76,42 +85,50 @@ public class CategoriaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String sa = request.getParameter("submitAction");
-        CategoriaCRUD crud = new CategoriaCRUD();
-        if(sa.equalsIgnoreCase("criar")) {
-            Categoria categoria = new Categoria();
-            categoria.setDescricao(request.getParameter("descricao"));
-            //adicionei o nome aqui
-            categoria.setNome(request.getParameter("nome"));
-            crud.create(categoria);
-        } else {
-            if(sa.equalsIgnoreCase("Ver")){
-                List<String> str;
-                List<Categoria> cat;
-                str = crud.getMetadata();
-                cat = crud.readAll();
-                request.setAttribute("catCampos", str);
-                request.setAttribute("categoria", cat);
-            }
-            if(sa.equalsIgnoreCase("Alterar")){
-                int catid = Integer.valueOf(request.getParameter("id"));
-                Categoria c = crud.readOne(catid);
-                c.setDescricao("mudando");// nao entendi direito o q isso ta fazendo, mudei ele depois, se nao tiver diferença tirar essa linha
+        HttpSession session = request.getSession();
+        
+        if(null == session.getAttribute("logado")) {
+            //User is NOT logged in.
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.htm");
+            dispatcher.forward(request, response);
+        } else {  
+            String sa = request.getParameter("submitAction");
+            CategoriaCRUD crud = new CategoriaCRUD();
+            if(sa.equalsIgnoreCase("criar")) {
+                Categoria categoria = new Categoria();
+                categoria.setDescricao(request.getParameter("descricao"));
                 //adicionei o nome aqui
-                c.setNome(request.getParameter("nome"));
-                c.setDescricao(request.getParameter("descricao"));
-                crud.update(c);
-            }
+                categoria.setNome(request.getParameter("nome"));
+                crud.create(categoria);
+            } else {
+                if(sa.equalsIgnoreCase("Ver")){
+                    List<String> str;
+                    List<Categoria> cat;
+                    str = crud.getMetadata();
+                    cat = crud.readAll();
+                    request.setAttribute("catCampos", str);
+                    request.setAttribute("categoria", cat);
+                }
+                if(sa.equalsIgnoreCase("Alterar")){
+                    int catid = Integer.valueOf(request.getParameter("id"));
+                    Categoria c = crud.readOne(catid);
+                    c.setDescricao("mudando");// nao entendi direito o q isso ta fazendo, mudei ele depois, se nao tiver diferença tirar essa linha
+                    //adicionei o nome aqui
+                    c.setNome(request.getParameter("nome"));
+                    c.setDescricao(request.getParameter("descricao"));
+                    crud.update(c);
+                }
 
-            if(sa.equalsIgnoreCase("Excluir")){
-                int catid = Integer.valueOf(request.getParameter("id"));
-                Categoria c = new Categoria();
-                c.setId(catid);
-                crud.delete(c);
+                if(sa.equalsIgnoreCase("Excluir")){
+                    int catid = Integer.valueOf(request.getParameter("id"));
+                    Categoria c = new Categoria();
+                    c.setId(catid);
+                    crud.delete(c);
+                }
             }
+            //RequestDispatcher rd = request.getRequestDispatcher("/TrabalhoFinal/login-menu/menu.html");
+            //rd.forward(request, response);
         }
-        //RequestDispatcher rd = request.getRequestDispatcher("/TrabalhoFinal/login-menu/menu.html");
-        //rd.forward(request, response);
     }
 
     /**

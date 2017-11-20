@@ -16,6 +16,7 @@ import model.Produto;
 import control.dao.ProdutoCRUD;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -62,17 +63,25 @@ public class ProdutoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String opcao = request.getParameter("opcao");
+        HttpSession session = request.getSession();
         
-        if(opcao.equalsIgnoreCase("editar")) {
-            int id = Integer.parseInt(request.getParameter("id"));
-            ProdutoCRUD crud = new ProdutoCRUD();
-            Produto pdt;
-            pdt = crud.readOne(id);
-            request.setAttribute("produto", pdt);
-
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/editForm/produto.jsp");
+        if(null == session.getAttribute("logado")) {
+            //User is NOT logged in.
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.htm");
             dispatcher.forward(request, response);
+        } else {  
+            String opcao = request.getParameter("opcao");
+
+            if(opcao.equalsIgnoreCase("editar")) {
+                int id = Integer.parseInt(request.getParameter("id"));
+                ProdutoCRUD crud = new ProdutoCRUD();
+                Produto pdt;
+                pdt = crud.readOne(id);
+                request.setAttribute("produto", pdt);
+
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/editForm/produto.jsp");
+                dispatcher.forward(request, response);
+            }
         }
     }
 
@@ -87,43 +96,51 @@ public class ProdutoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String sa = request.getParameter("submitAction");
-        ProdutoCRUD crud = new ProdutoCRUD();
-        if(sa.equalsIgnoreCase("criar")) {
-            Produto produto = new Produto();
-            //administrador.setDescricao(request.getParameter("descricao"));
-            //adicionei o nome aqui
-            produto.setIdCategoria(Integer.parseInt(request.getParameter("idCategoria")));
-            produto.setNome(request.getParameter("nome"));
-            produto.setDescricao(request.getParameter("descricao"));
-            produto.setValor(Double.parseDouble(request.getParameter("valor")));
-            crud.create(produto);
-        } else {
-            if(sa.equalsIgnoreCase("Ver")){
-                List<String> str;
-                List<Produto> pdt;
-                str = crud.getMetadata();
-                pdt = crud.readAll();
-                request.setAttribute("pdtCampos", str);
-                request.setAttribute("produto", pdt);
-            }
-            if(sa.equalsIgnoreCase("Alterar")){
-                int id = Integer.valueOf(request.getParameter("id"));
-                Produto produto = crud.readOne(id);
-                //c.setDescricao("mudando");// nao entendi direito o q isso ta fazendo, mudei ele depois, se nao tiver diferença tirar essa linha
+        HttpSession session = request.getSession();
+        
+        if(null == session.getAttribute("logado")) {
+            //User is NOT logged in.
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.htm");
+            dispatcher.forward(request, response);
+        } else {  
+            String sa = request.getParameter("submitAction");
+            ProdutoCRUD crud = new ProdutoCRUD();
+            if(sa.equalsIgnoreCase("criar")) {
+                Produto produto = new Produto();
+                //administrador.setDescricao(request.getParameter("descricao"));
                 //adicionei o nome aqui
                 produto.setIdCategoria(Integer.parseInt(request.getParameter("idCategoria")));
                 produto.setNome(request.getParameter("nome"));
                 produto.setDescricao(request.getParameter("descricao"));
                 produto.setValor(Double.parseDouble(request.getParameter("valor")));
-                crud.update(produto);
-            }
+                crud.create(produto);
+            } else {
+                if(sa.equalsIgnoreCase("Ver")){
+                    List<String> str;
+                    List<Produto> pdt;
+                    str = crud.getMetadata();
+                    pdt = crud.readAll();
+                    request.setAttribute("pdtCampos", str);
+                    request.setAttribute("produto", pdt);
+                }
+                if(sa.equalsIgnoreCase("Alterar")){
+                    int id = Integer.valueOf(request.getParameter("id"));
+                    Produto produto = crud.readOne(id);
+                    //c.setDescricao("mudando");// nao entendi direito o q isso ta fazendo, mudei ele depois, se nao tiver diferença tirar essa linha
+                    //adicionei o nome aqui
+                    produto.setIdCategoria(Integer.parseInt(request.getParameter("idCategoria")));
+                    produto.setNome(request.getParameter("nome"));
+                    produto.setDescricao(request.getParameter("descricao"));
+                    produto.setValor(Double.parseDouble(request.getParameter("valor")));
+                    crud.update(produto);
+                }
 
-            if(sa.equalsIgnoreCase("Excluir")){
-                int id = Integer.valueOf(request.getParameter("id"));
-                Produto produto = new Produto();
-                produto.setId(id);
-                crud.delete(produto);
+                if(sa.equalsIgnoreCase("Excluir")){
+                    int id = Integer.valueOf(request.getParameter("id"));
+                    Produto produto = new Produto();
+                    produto.setId(id);
+                    crud.delete(produto);
+                }
             }
         }
     }

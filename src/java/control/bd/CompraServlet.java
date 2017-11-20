@@ -16,6 +16,7 @@ import model.Compra;
 import control.dao.CompraCRUD;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -62,17 +63,25 @@ public class CompraServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String opcao = request.getParameter("opcao");
+        HttpSession session = request.getSession();
         
-        if(opcao.equalsIgnoreCase("editar")) {
-            int id = Integer.parseInt(request.getParameter("id"));
-            CompraCRUD crud = new CompraCRUD();
-            Compra cmp;
-            cmp = crud.readOne(id);
-            request.setAttribute("compra", cmp);
-
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/editForm/compra.jsp");
+        if(null == session.getAttribute("logado")) {
+            //User is NOT logged in.
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.htm");
             dispatcher.forward(request, response);
+        } else {  
+            String opcao = request.getParameter("opcao");
+
+            if(opcao.equalsIgnoreCase("editar")) {
+                int id = Integer.parseInt(request.getParameter("id"));
+                CompraCRUD crud = new CompraCRUD();
+                Compra cmp;
+                cmp = crud.readOne(id);
+                request.setAttribute("compra", cmp);
+
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/editForm/compra.jsp");
+                dispatcher.forward(request, response);
+            }
         }
     }
 
@@ -87,39 +96,47 @@ public class CompraServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String sa = request.getParameter("submitAction");
-        CompraCRUD crud = new CompraCRUD();
-        if(sa.equalsIgnoreCase("criar")) {
-            Compra compra = new Compra();
-            //administrador.setDescricao(request.getParameter("descricao"));
-            //adicionei o nome aqui
-            compra.setIdCliente(Integer.parseInt(request.getParameter("idCliente")));
-            compra.setIdProduto(Integer.parseInt(request.getParameter("idProduto")));
-            crud.create(compra);
-        } else {
-            if(sa.equalsIgnoreCase("Ver")){
-                List<String> str;
-                List<Compra> cmp;
-                str = crud.getMetadata();
-                cmp = crud.readAll();
-                request.setAttribute("cmpCampos", str);
-                request.setAttribute("compra", cmp);
-            }
-            if(sa.equalsIgnoreCase("Alterar")){
-                int id = Integer.valueOf(request.getParameter("id"));
-                Compra compra = crud.readOne(id);
-                //c.setDescricao("mudando");// nao entendi direito o q isso ta fazendo, mudei ele depois, se nao tiver diferença tirar essa linha
+        HttpSession session = request.getSession();
+        
+        if(null == session.getAttribute("logado")) {
+            //User is NOT logged in.
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.htm");
+            dispatcher.forward(request, response);
+        } else {  
+            String sa = request.getParameter("submitAction");
+            CompraCRUD crud = new CompraCRUD();
+            if(sa.equalsIgnoreCase("criar")) {
+                Compra compra = new Compra();
+                //administrador.setDescricao(request.getParameter("descricao"));
                 //adicionei o nome aqui
                 compra.setIdCliente(Integer.parseInt(request.getParameter("idCliente")));
                 compra.setIdProduto(Integer.parseInt(request.getParameter("idProduto")));
-                crud.update(compra);
-            }
+                crud.create(compra);
+            } else {
+                if(sa.equalsIgnoreCase("Ver")){
+                    List<String> str;
+                    List<Compra> cmp;
+                    str = crud.getMetadata();
+                    cmp = crud.readAll();
+                    request.setAttribute("cmpCampos", str);
+                    request.setAttribute("compra", cmp);
+                }
+                if(sa.equalsIgnoreCase("Alterar")){
+                    int id = Integer.valueOf(request.getParameter("id"));
+                    Compra compra = crud.readOne(id);
+                    //c.setDescricao("mudando");// nao entendi direito o q isso ta fazendo, mudei ele depois, se nao tiver diferença tirar essa linha
+                    //adicionei o nome aqui
+                    compra.setIdCliente(Integer.parseInt(request.getParameter("idCliente")));
+                    compra.setIdProduto(Integer.parseInt(request.getParameter("idProduto")));
+                    crud.update(compra);
+                }
 
-            if(sa.equalsIgnoreCase("Excluir")){
-                int id = Integer.valueOf(request.getParameter("id"));
-                Compra compra = new Compra();
-                compra.setId(id);
-                crud.delete(compra);
+                if(sa.equalsIgnoreCase("Excluir")){
+                    int id = Integer.valueOf(request.getParameter("id"));
+                    Compra compra = new Compra();
+                    compra.setId(id);
+                    crud.delete(compra);
+                }
             }
         }
     }
