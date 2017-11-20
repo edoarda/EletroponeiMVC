@@ -5,5 +5,5 @@
 --%>
 
 <jsp:include page="header.jsp" />
-<h1 class="formy"> Isso é um index.</h1>
+<h1 class="george"> Isso é um index.</h1>
 <jsp:include page="footer.jsp" />

@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,47 +36,57 @@ public class AdminIndexServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<String> str;
+        HttpSession session = request.getSession();
         
-        List<Administrador> adm;
-        AdministradorCRUD readAdm = new AdministradorCRUD();
-        adm = readAdm.readAll();
-        str = readAdm.getMetadata();
-        request.setAttribute("administrador", adm);
-        request.setAttribute("admHead", str);
-        //out.println("VOCE É " + adm.get(0).getLogin());
-        
-        List<Categoria> ctg;
-        CategoriaCRUD readCtg = new CategoriaCRUD();
-        str = readCtg.getMetadata();
-        ctg = readCtg.readAll();
-        request.setAttribute("catHead", str);
-        request.setAttribute("categoria", ctg);
+        if(null == session.getAttribute("logado")) {
+            //User is NOT logged in.
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.htm");
+            dispatcher.forward(request, response);
+        } else {  
+            List<String> str;
 
-        List<Cliente> clt;
-        ClienteCRUD readClt = new ClienteCRUD();
-        str = readClt.getMetadata();
-        clt = readClt.readAll();
-        request.setAttribute("cltHead", str);
-        request.setAttribute("cliente", clt);
+            List<Administrador> adm;
+            AdministradorCRUD readAdm = new AdministradorCRUD();
+            adm = readAdm.readAll();
+            str = readAdm.getMetadata();
+            request.setAttribute("administrador", adm);
+            request.setAttribute("admHead", str);
+            //out.println("VOCE É " + adm.get(0).getLogin());
 
-        List<Compra> cmp;
-        CompraCRUD readCmp = new CompraCRUD();
-        str = readCmp.getMetadata();
-        cmp = readCmp.readAll();
-        request.setAttribute("cmpHead", str);
-        request.setAttribute("compra", cmp);
+            List<Categoria> ctg;
+            CategoriaCRUD readCtg = new CategoriaCRUD();
+            str = readCtg.getMetadata();
+            ctg = readCtg.readAll();
+            request.setAttribute("catHead", str);
+            request.setAttribute("categoria", ctg);
 
-        List<Produto> pdt;
-        ProdutoCRUD readPdt = new ProdutoCRUD();
-        str = readPdt.getMetadata();
-        pdt = readPdt.readAll();
-        request.setAttribute("pdtHead", str);
-        request.setAttribute("produto", pdt);
+            List<Cliente> clt;
+            ClienteCRUD readClt = new ClienteCRUD();
+            str = readClt.getMetadata();
+            clt = readClt.readAll();
+            request.setAttribute("cltHead", str);
+            request.setAttribute("cliente", clt);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/indexAdmin.jsp");
-        dispatcher.forward(request, response);
+            List<Compra> cmp;
+            CompraCRUD readCmp = new CompraCRUD();
+            str = readCmp.getMetadata();
+            cmp = readCmp.readAll();
+            request.setAttribute("cmpHead", str);
+            request.setAttribute("compra", cmp);
+
+            List<Produto> pdt;
+            ProdutoCRUD readPdt = new ProdutoCRUD();
+            str = readPdt.getMetadata();
+            pdt = readPdt.readAll();
+            request.setAttribute("pdtHead", str);
+            request.setAttribute("produto", pdt);
             
+            request.setAttribute("user", session.getAttribute("login"));
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/indexAdmin.jsp");
+            dispatcher.forward(request, response);
+
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

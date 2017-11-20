@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -33,9 +34,27 @@ public class RedirectServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String pagina = request.getParameter("pagina");
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/"+ pagina + ".jsp");
-        dispatcher.forward(request, response);
+        if (pagina.equalsIgnoreCase("admin")) {
+            if (null == session.getAttribute("logado")) {
+                //User is not logged in, but wants to
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/admin.jsp");
+                dispatcher.forward(request, response);  
+            } else {
+                //user wants to be redirected to the Index
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminIndex");
+                dispatcher.forward(request, response);
+            }
+            
+        } else if (null == session.getAttribute("logado")) {
+            //User is NOT logged in.
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.htm");
+            dispatcher.forward(request, response);
+        } else {  
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/"+ pagina + ".jsp");
+            dispatcher.forward(request, response);
+        }
     }
     
     @Override

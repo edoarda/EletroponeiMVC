@@ -77,6 +77,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("login", login);
             session.setAttribute("senha", senha);
             session.setAttribute("logado", "true");
+            session.setMaxInactiveInterval(5*60); //5 minutos
             //resposta = request.getRequestDispatcher("/WEB-INF/jsp/indexAdmin.jsp"); 
             resposta = request.getRequestDispatcher("/AdminIndex"); 
         }
