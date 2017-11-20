@@ -139,7 +139,7 @@ public class CompraServlet extends HttpServlet {
                 }
             }
         }
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/update.jsp");
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminIndex");
         dispatcher.forward(request, response);
     }
 

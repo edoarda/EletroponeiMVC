@@ -126,7 +126,7 @@ public class CategoriaServlet extends HttpServlet {
                     crud.delete(c);
                 }
             }
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/update.jsp");
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminIndex");
             dispatcher.forward(request, response);
         }
     }

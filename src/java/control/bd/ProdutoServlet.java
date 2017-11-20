@@ -142,7 +142,7 @@ public class ProdutoServlet extends HttpServlet {
                     crud.delete(produto);
                 }
             }
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/update.jsp");
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminIndex");
             dispatcher.forward(request, response);
         }
     }

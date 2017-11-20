@@ -71,7 +71,7 @@ public class AdministradorServlet extends HttpServlet {
         } else {  
             // User IS logged in.  
             String opcao = request.getParameter("opcao");
-        
+            
             if(opcao.equalsIgnoreCase("editar")) {
                 int id = Integer.parseInt(request.getParameter("id"));
                 AdministradorCRUD crud = new AdministradorCRUD();
@@ -83,6 +83,16 @@ public class AdministradorServlet extends HttpServlet {
                 request.setAttribute("administrador", adm);
 
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/editForm/administrador.jsp");
+                dispatcher.forward(request, response);
+            }
+            if(opcao.equalsIgnoreCase("deletar")){
+                int aid = Integer.valueOf(request.getParameter("id"));
+                AdministradorCRUD crud = new AdministradorCRUD();
+                Administrador a = new Administrador();
+                a.setId(aid);
+                crud.delete(a);
+
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminIndex");
                 dispatcher.forward(request, response);
             }
         } 
@@ -145,7 +155,7 @@ public class AdministradorServlet extends HttpServlet {
                     crud.delete(a);
                 }
             }
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/update.jsp");
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminIndex");
             dispatcher.forward(request, response);
         }
     }

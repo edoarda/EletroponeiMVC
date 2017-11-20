@@ -16,3 +16,14 @@ function validarLogin() {
     alert("Usuário ou senha inválidos");
   }
 }
+
+function confirmar(theUrl) {
+    var r = confirm("Deseja Mesmo Deletar?")
+    if(r){
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+        xmlHttp.send( null );
+        return xmlHttp.responseText;
+    }
+    return null;
+}

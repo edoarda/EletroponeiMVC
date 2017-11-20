@@ -45,8 +45,8 @@ public class AdministradorCRUD {
             preparador = conexao.prepareStatement(sql);
             resultado = preparador.executeQuery();
             while(resultado.next()){
-                //model.Administrador administrador = new model.Administrador(resultado.getInt("id"), resultado.getString("login"), resultado.getString("senha"));
-                model.Administrador administrador = new model.Administrador(1, resultado.getString("login"), resultado.getString("senha"));
+                model.Administrador administrador = new model.Administrador(resultado.getInt("id"), resultado.getString("login"), resultado.getString("senha"));
+                //model.Administrador administrador = new model.Administrador(1, resultado.getString("login"), resultado.getString("senha"));
                 lista.add(administrador);
             }
             resultado.close();

@@ -141,8 +141,8 @@ public class ProdutoCRUD {
         metadata.add("Id");
         metadata.add("IdCategoria");
         metadata.add("Nome");
-        metadata.add("Valor");
         metadata.add("Descrição");
+        metadata.add("Valor");
         return metadata;
     }
 }

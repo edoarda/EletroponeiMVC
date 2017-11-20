@@ -22,6 +22,7 @@
     <link href="./resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="./resources/css.css" rel="stylesheet" type="text/css">
     <!-- Custom styles for this template -->
+    <script src="./resources/validadores.js"></script>
   </head>
 
   <body>
