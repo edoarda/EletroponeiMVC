@@ -6,3 +6,13 @@ function validarTamanho(str, min, max, campo) {
         return false;
     }
 }
+
+function validarLogin() {
+  var login = $("#login").val();
+  var senha = $("#password").val();
+  if(login == '' || senha == '') {
+    $("#login").val("");
+    $("#senha").val("");
+    alert("Usuário ou senha inválidos");
+  }
+}

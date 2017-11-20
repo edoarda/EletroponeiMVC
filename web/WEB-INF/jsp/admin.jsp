@@ -7,7 +7,7 @@
 <jsp:include page="header.jsp" />
 <div class="container formy">
 <h1> Área Administrativa </h1>
-<form action="LoginServlet" method="post">
+<form action="LoginServlet" method="post" onsubmit="validarLoging()">
   <div class="form-group">
     <label for="InputLogin">Login</label>
     <input type="text" class="form-control" name="InputLogin" placeholder="Digite seu usuário" required>
@@ -17,7 +17,7 @@
     <input type="password" class="form-control" name="InputSenha" placeholder="Digite sua senha" required\>
   </div>
   <div class="text-center">
-    <button type="submit" class="btn btn-primary form-btn">Enviar</button>
+      <button type="submit" class="btn btn-primary form-btn">Enviar</button>
   </div>
 </form>
 </div>
