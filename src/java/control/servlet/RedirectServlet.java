@@ -35,13 +35,16 @@ public class RedirectServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        
-        if(null == session.getAttribute("logado")) {
+        String pagina = request.getParameter("pagina");
+        if (pagina.equalsIgnoreCase("admin")) {
+            //User is not logged in, but wants to
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/admin.jsp");
+            dispatcher.forward(request, response);
+        } else if (null == session.getAttribute("logado")) {
             //User is NOT logged in.
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.htm");
             dispatcher.forward(request, response);
         } else {  
-            String pagina = request.getParameter("pagina");
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/"+ pagina + ".jsp");
             dispatcher.forward(request, response);
         }
