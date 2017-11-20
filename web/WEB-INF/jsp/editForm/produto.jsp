@@ -14,8 +14,7 @@
         </div>
     
         <div class='form-group'>
-            <label for="id">Id:</label>
-            <input type='number' class='form-control' name='id' value='${produto.id}' required>
+            <input type='hidden' class='form-control' name='id' value='${produto.id}' required>
         </div>
         
         <div class='form-group'>
@@ -35,7 +34,7 @@
         
         <div class='form-group'>
             <label for="valor">Valor:</label>
-            <input type='number' class='form-control' name='valor' value='${produto.valor}' required>
+            <input type='number' step='0.01' class='form-control' name='valor' value='${produto.valor}' required>
         </div>
 
         <div class='text-center'>

@@ -71,6 +71,16 @@ public class CategoriaServlet extends HttpServlet {
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/editForm/categoria.jsp");
                 dispatcher.forward(request, response);
             }
+            if(opcao.equalsIgnoreCase("deletar")){
+                int id = Integer.valueOf(request.getParameter("id"));
+                CategoriaCRUD crud = new CategoriaCRUD();
+                Categoria a = new Categoria();
+                a.setId(id);
+                crud.delete(a);
+
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminIndex");
+                dispatcher.forward(request, response);
+            }
         }
     }
 

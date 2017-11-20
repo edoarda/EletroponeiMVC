@@ -82,6 +82,16 @@ public class CompraServlet extends HttpServlet {
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/editForm/compra.jsp");
                 dispatcher.forward(request, response);
             }
+            if(opcao.equalsIgnoreCase("deletar")){
+                int id = Integer.valueOf(request.getParameter("id"));
+                CompraCRUD crud = new CompraCRUD();
+                Compra a = new Compra();
+                a.setId(id);
+                crud.delete(a);
+
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminIndex");
+                dispatcher.forward(request, response);
+            }
         }
     }
 

@@ -14,8 +14,7 @@
         </div>
     
         <div class='form-group'>
-            <label for="id">Id:</label>
-            <input type='number' class='form-control' name='id' value='${cliente.id}' required>
+            <input type='hidden' class='form-control' name='id' value='${cliente.id}' required>
         </div>
         
         <div class='form-group'>

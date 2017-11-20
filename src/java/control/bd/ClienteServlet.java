@@ -82,6 +82,16 @@ public class ClienteServlet extends HttpServlet {
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/editForm/cliente.jsp");
                 dispatcher.forward(request, response);
             }
+            if(opcao.equalsIgnoreCase("deletar")){
+                int id = Integer.valueOf(request.getParameter("id"));
+                ClienteCRUD crud = new ClienteCRUD();
+                Cliente a = new Cliente();
+                a.setId(id);
+                crud.delete(a);
+
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminIndex");
+                dispatcher.forward(request, response);
+            }
         }
     }
 

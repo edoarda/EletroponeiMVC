@@ -34,6 +34,7 @@ public class CategoriaCRUD {
             preparador.execute();
             preparador.close();
         } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
     
@@ -51,6 +52,7 @@ public class CategoriaCRUD {
             preparador.close();
             return lista;
         } catch(SQLException e) {
+            e.printStackTrace();
             return null;
         }
     }
@@ -73,6 +75,7 @@ public class CategoriaCRUD {
             preparador.close();
             return categoria;
         } catch(SQLException e) {
+            e.printStackTrace();
             return null;
         }
     }
@@ -95,6 +98,7 @@ public class CategoriaCRUD {
             preparador.close();
             return categoria;
         } catch(SQLException e) {
+            e.printStackTrace();
             return null;
         }
     }
@@ -109,6 +113,7 @@ public class CategoriaCRUD {
             preparador.execute();
             preparador.close();
         } catch(SQLException e) {
+            e.printStackTrace();
         }
     }
     
@@ -120,6 +125,7 @@ public class CategoriaCRUD {
             preparador.execute();
             preparador.close();
         } catch(SQLException e) {
+            e.printStackTrace();
         }
     }
     

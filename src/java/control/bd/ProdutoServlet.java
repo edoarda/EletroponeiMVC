@@ -82,6 +82,16 @@ public class ProdutoServlet extends HttpServlet {
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/editForm/produto.jsp");
                 dispatcher.forward(request, response);
             }
+            if(opcao.equalsIgnoreCase("deletar")){
+                int id = Integer.valueOf(request.getParameter("id"));
+                ProdutoCRUD crud = new ProdutoCRUD();
+                Produto a = new Produto();
+                a.setId(id);
+                crud.delete(a);
+
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminIndex");
+                dispatcher.forward(request, response);
+            }
         }
     }
 

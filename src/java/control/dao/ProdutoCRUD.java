@@ -111,7 +111,7 @@ public class ProdutoCRUD {
     }
     
     public void update(model.Produto produto){
-        String sql = "update produto set idcategoria = ? nome = ? , descricao = ?, valor = ? where id = ?";
+        String sql = "update produto set idcategoria = ?, nome = ?, descricao = ?, valor = ? where id = ?";
         try {
             preparador = conexao.prepareStatement(sql);
             preparador.setInt(1, produto.getIdCategoria());
@@ -122,6 +122,7 @@ public class ProdutoCRUD {
             preparador.execute();
             preparador.close();
         } catch(SQLException e){
+            e.printStackTrace();
         }
     }
     
