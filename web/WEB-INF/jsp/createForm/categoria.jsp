@@ -9,19 +9,19 @@
 <jsp:include page="../header.jsp" />
 
 <div class='container formy'>
-    <form action='CategoriaServlet' method='post'>
+    <form action='CategoriaServlet' method='post' onsubmit='return validarCategoria()'>
         <div class='form-group'>
             <input type='hidden' class='form-control' name='submitAction' value='criar'>
         </div>
 
         <div class='form-group'>
             <label for="nome">Nome:</label>
-            <input type='text' class='form-control' name='nome' required>
+            <input type='text' class='form-control' id='nome' name='nome' required>
         </div>
   
         <div class='form-group'>
             <label for="descricao">Descrição:</label>
-            <input type='text' class='form-control' name='descricao' required>
+            <input type='text' class='form-control' id='descricao' name='descricao' required>
         </div>
 
         <div class='text-center'>

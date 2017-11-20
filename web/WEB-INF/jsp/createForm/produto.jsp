@@ -8,7 +8,7 @@
 <jsp:include page="../header.jsp" />
 
 <div class='container formy'>
-    <form action='ProdutoServlet' method='post'>
+    <form action='ProdutoServlet' method='post' onsubmit='return validarProduto()'>
         <div class='form-group'>
             <input type='hidden' class='form-control' name='submitAction' value='criar'>
         </div>
@@ -21,17 +21,17 @@
         
         <div class='form-group'>
             <label for="nome">Nome:</label>
-            <input type='text' class='form-control' name='nome' required>
+            <input type='text' class='form-control' id='nome' name='nome' required>
         </div>
         
         <div class='form-group'>
             <label for="descricao">Descição:</label>
-            <input type='text' class='form-control' name='descricao' required>
+            <input type='text' class='form-control' id='descricao' name='descricao' required>
         </div>
         
         <div class='form-group'>
             <label for="valor">Valor:</label>
-            <input type='number' step='0.01' class='form-control' name='valor' required>
+            <input type='number' step='0.01' class='form-control' id='valor' name='valor' required>
         </div>
 
         <div class='text-center'>
