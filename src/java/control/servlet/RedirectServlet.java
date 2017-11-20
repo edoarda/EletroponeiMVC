@@ -37,9 +37,16 @@ public class RedirectServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String pagina = request.getParameter("pagina");
         if (pagina.equalsIgnoreCase("admin")) {
-            //User is not logged in, but wants to
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/admin.jsp");
-            dispatcher.forward(request, response);
+            if (null == session.getAttribute("logado")) {
+                //User is not logged in, but wants to
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/admin.jsp");
+                dispatcher.forward(request, response);  
+            } else {
+                //user wants to be redirected to the Index
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminIndex");
+                dispatcher.forward(request, response);
+            }
+            
         } else if (null == session.getAttribute("logado")) {
             //User is NOT logged in.
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.htm");

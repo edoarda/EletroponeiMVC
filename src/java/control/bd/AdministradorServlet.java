@@ -145,6 +145,8 @@ public class AdministradorServlet extends HttpServlet {
                     crud.delete(a);
                 }
             }
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/update.jsp");
+            dispatcher.forward(request, response);
         }
     }
 

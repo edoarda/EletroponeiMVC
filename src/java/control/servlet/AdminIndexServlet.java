@@ -80,6 +80,8 @@ public class AdminIndexServlet extends HttpServlet {
             pdt = readPdt.readAll();
             request.setAttribute("pdtHead", str);
             request.setAttribute("produto", pdt);
+            
+            request.setAttribute("user", session.getAttribute("login"));
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/indexAdmin.jsp");
             dispatcher.forward(request, response);

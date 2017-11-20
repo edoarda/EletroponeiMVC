@@ -126,8 +126,8 @@ public class CategoriaServlet extends HttpServlet {
                     crud.delete(c);
                 }
             }
-            //RequestDispatcher rd = request.getRequestDispatcher("/TrabalhoFinal/login-menu/menu.html");
-            //rd.forward(request, response);
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/update.jsp");
+            dispatcher.forward(request, response);
         }
     }
 

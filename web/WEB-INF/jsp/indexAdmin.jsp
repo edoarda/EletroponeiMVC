@@ -7,7 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="header.jsp" />
 <div class='container'>
-    <h1 class="formy">Vc entrou seu bosta</h1>
+    <h1 class="george">Bem vindo, ${user}!</h1>
     
     <!--ADMINISTRADOR -->
     <h5><a href="Redirect?pagina=/createForm/administrador">Adicionar à Administrador</a></h5>
