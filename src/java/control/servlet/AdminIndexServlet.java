@@ -36,7 +36,7 @@ public class AdminIndexServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
         
         if(null == session.getAttribute("logado")) {
             //User is NOT logged in.
