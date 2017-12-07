@@ -19,12 +19,10 @@
             <c:forEach var="pdt" items="${produto }">
                 <tr>
                 <td>${pdt.id }</td>
-                <td>${pdt.idCategoria }</td>
                 <td>${pdt.nome }</td>
                 <td>${pdt.descricao }</td>
                 <td>${pdt.valor }</td>
-                <td><a href='ProdutoServlet?opcao=editar&id=${pdt.id }'>EDITAR</a></td>
-                <td><a href='ProdutoServlet?opcao=deletar&id=${pdt.id }'>DELETAR</a></td>
+                <td><a href='ProdutoServlet?opcao=editar&id=${pdt.id }'>ADICIONAR AO CARRINHO LINK ERRADO</a></td>
                 </tr>
             </c:forEach>
         </tbody>

@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import model.Produto;
 
 /**
  *
@@ -86,25 +87,29 @@ public class ProdutoCRUD {
         }
     }
     
-    public model.Produto readOne(String nome) {
+    //precisei transformar esse em List por causa do like, se der ruim trazer de volta
+    public List<model.Produto> readOne(String nome) {
        String sql = "select * from produto where name like %?%";
+       List<model.Produto> produtos = new ArrayList<>();
        model.Produto produto = new model.Produto();
         try {
             preparador = conexao.prepareStatement(sql);
             preparador.setString(1, nome);
             resultado = preparador.executeQuery();
-            if(resultado.next()){
+            //if(resultado.next()){
+            while(resultado.next()){
                 produto.setId(resultado.getInt("id"));
                 produto.setIdCategoria(resultado.getInt("idcategoria"));
                 produto.setNome(resultado.getString("nome"));
                 produto.setDescricao(resultado.getString("descricao"));
                 produto.setValor(resultado.getDouble("valor"));
-            } else {
-                produto = null;
+                produtos.add(produto);
+            //} else {
+            //    produto = null;
             }
             resultado.close();
             preparador.close();
-            return produto;
+            return produtos;
         } catch(SQLException e){
             return null;
         }
@@ -145,5 +150,32 @@ public class ProdutoCRUD {
         metadata.add("Descrição");
         metadata.add("Valor");
         return metadata;
+    }
+
+    public List<Produto> readWhere(int id) {
+        String sql = "select * from produto where idcategoria = ?";
+       List<model.Produto> produtos = new ArrayList<>();
+       model.Produto produto = new model.Produto();
+        try {
+            preparador = conexao.prepareStatement(sql);
+            preparador.setInt(1, id);
+            resultado = preparador.executeQuery();
+            //if(resultado.next()){
+            while(resultado.next()){
+                produto.setId(resultado.getInt("id"));
+                produto.setIdCategoria(resultado.getInt("idcategoria"));
+                produto.setNome(resultado.getString("nome"));
+                produto.setDescricao(resultado.getString("descricao"));
+                produto.setValor(resultado.getDouble("valor"));
+                produtos.add(produto);
+            //} else {
+            //    produto = null;
+            }
+            resultado.close();
+            preparador.close();
+            return produtos;
+        } catch(SQLException e){
+            return null;
+        }
     }
 }
