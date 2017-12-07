@@ -56,8 +56,6 @@ public class CategoriaServlet extends HttpServlet {
         
         if(null == session.getAttribute("logado")) {
             //User is NOT logged in.
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.htm");
-            dispatcher.forward(request, response);
         } else {  
             String opcao = request.getParameter("opcao");
 
