@@ -52,12 +52,12 @@ public class SearchServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         List<Produto> produtos;
         ProdutoCRUD crud = new ProdutoCRUD();
-        produtos = crud.readWhere(1);
+        produtos = crud.readWhere(id);
         List<String> pdtHead = crud.getMetadata();
         pdtHead.remove("idCategoria");
         request.setAttribute("pdt", produtos);
         request.setAttribute("pdtHead", pdtHead);
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/pdtTable.jsp");
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/view/pdtTable.jsp");
         dispatcher.forward(request, response);
     }
 
